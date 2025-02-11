@@ -1,0 +1,15 @@
+---
+title: AI Applied to Requirements Defintion
+date: last-modified
+Authors: Nicole Yazbeck, Yosi Assefa, Kevin Hwangpo, Kelly Hwangpo, Zerlyne N-Simons
+---
+
+#Table of Contents
+
+*  Introduction about using AI in requirement definition
+
+*  State-of-the-art research AI tools in requirements definition.
+
+*  Important Tools
+
+*  Emerging Tools
