@@ -3,26 +3,18 @@ title: AI Applied to Requirements Defintion
 date: last-modified
 author: Nicole Yazbeck, Yosi Assefa, Kevin Hwangpo, Kelly Hwangpo, Zerlyne N-Simons
 ---
-## Group Members
-
-*  Nicole Yazbeck
-
-*  Yosi Assefa
-
-*  Kevin Hwangpo
-
-*  Kelly Hwangpo
-
-*  Zerlyne N-Simons
-
 
 ## Table of Contents
 
 *  Introduction about using AI in requirement definition
-
+   |  An overview of how AI is transforming the process of gathering and defining software requirements. This section discusses the potential benefits and challenges of incorporating AI in requirement definition.
 *  State-of-the-art research AI tools in requirements definition.
-
+   |  A review of the latest research and innovations in AI tools that assist in defining, analyzing, and managing requirements. This section highlights key studies, frameworks, and methodologies.
 *  Important Tools
-
+   |  A detailed description of the current widely-used AI tools and technologies for requirement definition. This section explores established AI tools and platforms that aid in automating and enhancing the process.
 *  Emerging Tools
+   |  A look at emerging AI tools and technologies that are starting to gain traction in the field of requirements definition. This section discusses the potential of these new tools and how they may shape the future of the industry.
 
+
+## Introduction
+   |   In today's fast-paced software development landscape, the accuracy and efficiency of requirement definition play a crucial role in ensuring the success of a project. Traditionally, the process of gathering and defining requirements has been largely manual, relying on stakeholders to articulate their needs and developers to interpret them. However, with the rise of Artificial Intelligence (AI), the field of requirement definition is undergoing a transformation. AI-driven tools and techniques are increasingly being used to automate, streamline, and enhance the requirement gathering and definition process.
