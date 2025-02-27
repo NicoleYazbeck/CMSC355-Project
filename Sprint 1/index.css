@@ -70,7 +70,7 @@ nav {
         &::before {
           content: attr(data-item);
           transition: 0.5s;
-          color: #8254ff;
+          color: #678FB4;
           position: absolute;
           top: 0;
           bottom: 0;
