@@ -6,7 +6,7 @@ body {
     font-family: sans-serif;
     line-height: 1.5;
     min-height: 100vh;
-    background: #f3f3f3;
+    background: #697268;
     flex-direction: column;
     margin: 0;
 }
@@ -22,7 +22,7 @@ body {
 }
 
 h1 {
-    color: blue;
+    color: #4E5340;
 }
 
 label {
@@ -53,8 +53,7 @@ button {
     border: none;
     color: white;
     cursor: pointer;
-    background-color: #4CAF50;
-    width: 100%;
+    background-color: #95A3A4;
     font-size: 16px;
 }
 
