@@ -30,7 +30,7 @@ p {
   &::before {
     content: attr(data-item);
     transition: all 1s ease-in-out;
-    color: #8254ff;
+    color: #678FB4;
     position: absolute;
     top: 0;
     bottom: 0;
