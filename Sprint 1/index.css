@@ -3,6 +3,11 @@
   margin: 0;
 }
 
+header img {
+  width: 100vw; 
+   height: auto;
+   display: block;
+}
 body {
   display: flex;
   flex-direction: column;
@@ -90,7 +95,7 @@ nav {
     }
   }
 }
-// Developed by http://grohit.com/
+
 footer {
   position: absolute;
   font-size: 12px;
