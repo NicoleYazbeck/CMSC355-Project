@@ -4,7 +4,7 @@ date: last-modified
 author: Nicole Yazbeck, Yosi Assefa, Kevin Hwangpo, Kelly Hwangpo, Zerlyne N-Simons
 ---
 
-![](OIP.jpg){width=100% style="border-radius: 15px; box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2); display: block; margin: auto;"}
+![](OIP.jpg){width=%50 style="border-radius: 15px; box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2); display: block; margin: auto;"}
 
 ## Table of Contents
 
