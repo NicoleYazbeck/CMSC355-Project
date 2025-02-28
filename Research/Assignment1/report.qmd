@@ -4,7 +4,7 @@ date: last-modified
 author: Nicole Yazbeck, Yosi Assefa, Kevin Hwangpo, Kelly Hwangpo, Zerlyne N-Simons
 ---
 
-![Caption](downloads/OIP.jpg)
+![Caption](OIP.jpg)
 
 ## Table of Contents
 
