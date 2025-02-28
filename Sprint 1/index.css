@@ -3,11 +3,6 @@
   margin: 0;
 }
 
-header img {
-  width: 100vw; 
-   height: auto;
-   display: block;
-}
 body {
   display: flex;
   flex-direction: column;
