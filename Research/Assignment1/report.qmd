@@ -4,7 +4,7 @@ date: last-modified
 author: Nicole Yazbeck, Yosi Assefa, Kevin Hwangpo, Kelly Hwangpo, Zerlyne N-Simons
 ---
 
-![Caption](OIP.jpg)
+![](OIP.jpg){width=full height=200px}
 
 ## Table of Contents
 
@@ -24,7 +24,7 @@ author: Nicole Yazbeck, Yosi Assefa, Kevin Hwangpo, Kelly Hwangpo, Zerlyne N-Sim
 
 :  A look at emerging AI tools and technologies that are starting to gain traction in the field of requirements definition. This section discusses the potential of these new tools and how they may shape the future of the industry.
 
-{{< pagebreak >}}
+<div class="page-break"></div>
 
 ## Introduction: Using AI in Requirement Definition
 In today's fast-paced software development and business environments, defining clear and precise requirements is critical to project success. Traditional methods of requirement gathering often suffer from ambiguity, inconsistencies, and inefficiencies, leading to costly revisions, misalignment with business goals, and project delays. However, Artificial Intelligence (AI) is reshaping this process by automating requirement extraction, improving clarity, and enhancing collaboration across teams.  
@@ -35,7 +35,7 @@ By integrating AI into the requirement definition process, organizations can min
 Many state-of-the-art tools for requirements definition leverage AI. These tools use natural language processing and automation to improve accuracy, consistency, and efficiency in Requirements Engineering. Modern tools for requirements definition include IBM Engineering Requirements Management, Aqua, and Visure. These tools streamline requirement gathering, traceability and collaboration. AI-powered tools, such as Chat-GPT-based assistants and NLP-driven tools, assist in extracting, analyzing and validating requirements from textual data. These advancements reduce ambiguity, improve compliance and accelerate developmental cycles allowing requirements definitions to be more precise and user-friendly.
 IBM Engineering Requirements Management is widely used in complex systems engineering projects, offering a wide range of traceability, change management, and compliance capabilities. This software enables teams to manage large scale requirements effectively while aligning their work with industry standards. IBM Engineering Requirements Quality Assistant allows for AI-powered quality assistance and compliance checking. Aqua is a requirements management solution which provides AI-enhanced traceability and automation. Visure offers advanced natural language processing abilities, AI-powered requirement traceability, and AI-powered requirements validation. These tools are all combined with AI-driven enhancements that optimize requirements definition by reducing errors, improving consistency and enhancing project efficiency.
 
-{{< pagebreak >}}
+<div class="page-break"></div>
 
 ## Important Tools
 The use of Artificial Intelligence has erupted in popularity, changing the way people interact with technology, access information, and obtain content. AI tools are commonly used to answer questions, generate pictures/videos, and assist with tasks. Popular AI tools like ChatGPT, Synthesia, and Grammarly are used globally, each offering their service differently through their strengths and weaknesses. 
@@ -48,7 +48,7 @@ With a variety of AI tools that are accessible to the public, each consists of t
 ## Emerging Tools
 Emerging tools applied to requirements primarily focus on using natural language processing to automate tasks such as requirement gathering, prioritization, traceability, and analysis. This allows for a faster and accurate capture of needs while minimizing the chance of human errors. These emerging technologies include features such as natural language understanding, requirement classification and tagging, consistency and conflict detection, recommendation engines, and chatbot based requirement gathering. The key benefits of using these AI emerging tools are increased efficiency by freeing up time for more strategic activities, improved accuracy by reducing human error through identifying inconsistencies, enhancing collaboration through facilitating easy communication, and an overall faster time to market by streamlining the requirement gathering process and thus leading to a faster development cycle.
 
-{{< pagebreak >}}
+<div class="page-break"></div>
 
 ## Sources
 
