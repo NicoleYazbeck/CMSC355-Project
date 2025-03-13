@@ -36,7 +36,7 @@ def register_patient(patient_name, patient_email, patient_age, patient_id, usern
             data["users"].append(new_patient)
 
             # Save the updated data back to the JSON file
-            with open('patients_data.json', 'w') as json_file:
+            with open('data.json', 'w') as json_file:
                 json.dump(data, json_file, indent=4)
                 
             return True
