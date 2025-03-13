@@ -1,0 +1,95 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "Alice Johnson",
+      "email": "alice@example.com",
+      "age": 25,
+      "patient_id": 1001
+    },
+    {
+      "id": 2,
+      "name": "Bob Smith",
+      "email": "bob@example.com",
+      "age": 30,
+      "patient_id": 1002
+    }
+  ],
+  "patients": [
+    {
+      "patient_id": 1001,
+      "name": "Alice Johnson",
+      "dob": "1999-05-14",
+      "medical_conditions": ["Diabetes", "Hypertension"],
+      "medications": [
+        {
+          "name": "Metformin",
+          "dosage": "500mg",
+          "schedule": "Twice a day"
+        },
+        {
+          "name": "Lisinopril",
+          "dosage": "10mg",
+          "schedule": "Once a day"
+        }
+      ],
+      "provider_id": 2001
+    },
+    {
+      "patient_id": 1002,
+      "name": "Bob Smith",
+      "dob": "1994-08-21",
+      "medical_conditions": ["Asthma"],
+      "medications": [
+        {
+          "name": "Albuterol",
+          "dosage": "90mcg",
+          "schedule": "As needed"
+        }
+      ],
+      "provider_id": 2002
+    }
+  ],
+  "providers": [
+    {
+      "provider_id": 2001,
+      "name": "Dr. Emily Carter",
+      "specialty": "Endocrinology",
+      "contact": "emily.carter@hospital.com"
+    },
+    {
+      "provider_id": 2002,
+      "name": "Dr. Mark Taylor",
+      "specialty": "Pulmonology",
+      "contact": "mark.taylor@hospital.com"
+    }
+  ],
+  "auth": {
+    "users": [
+      {
+        "username": "alice_johnson",
+        "password": "hashed_password_1",
+        "role": "patient",
+        "patient_id": 1001
+      },
+      {
+        "username": "bob_smith",
+        "password": "hashed_password_2",
+        "role": "patient",
+        "patient_id": 1002
+      },
+      {
+        "username": "emily_carter",
+        "password": "hashed_password_3",
+        "role": "provider",
+        "provider_id": 2001
+      },
+      {
+        "username": "mark_taylor",
+        "password": "hashed_password_4",
+        "role": "provider",
+        "provider_id": 2002
+      }
+    ]
+  }
+}
