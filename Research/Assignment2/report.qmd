@@ -18,6 +18,7 @@ author: Nicole Yazbeck, Yosi Assefa, Kevin Hwangpo, Kelly Hwangpo, Zerlyne N-Sim
 #### Important Tools: Strengths and Weaknessess
 
 > Evaluation of different AI tools, comparing their strengths, weaknesses, and use cases in software design.
+
 #### Emerging Tools
 
 > Exploration of new and evolving AI technologies that are shaping the future of software development.
