@@ -11,16 +11,6 @@ body {
     margin: 0;
 }
 
-.main {
-    background-color: #fff;
-    border-radius: 15px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-    padding: 10px 20px;
-    transition: transform 0.2s;
-    width: 500px;
-    text-align: center;
-}
-
 h1 {
     color: #678FB4;
 }
@@ -48,9 +38,4 @@ button {
     font-size: 16px;
 }
 
-.wrap {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
 
