@@ -30,9 +30,9 @@ def login():
     else:
         return jsonify({"error": "Invalid username or password"}), 401
 
-@app.route('/menu.html')
+@app.route('/patient_menu.html')
 def menu_page():
-    return render_template('menu.html')
+    return render_template('patient_menu.html')
 
 if __name__ == "__main__":
     app.run(debug=True)
