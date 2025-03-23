@@ -20,7 +20,7 @@
       <li><a href='medical_submissions.html' data-item='Submissions'>Medical Adherance Submissions</a></li>
       <li><a href='search_medications.html' data-item='Reminders'>Search Medications</a></li>
       <li><a href='manage_reminders.html' data-item='Reminders'>Manage Reminders</a></li>
-      <li><a href='manage_patientinfo.html' data-item='Account'>Manage Account</a></li>
+      <li><a href='patientmanager.html' data-item='Account'>Manage Account</a></li>
     </ul>
   </nav>
 
@@ -28,7 +28,20 @@
 
   <section>
     <h2> Current Medications</h2>
-    
+            <script>
+        function fetchJSONData() {
+            fetch('./data.json')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! Status: ${response.status}`);
+                    }
+                    return response.json();  
+                })
+                .then(data => console.log(data))  
+                .catch(error => console.error('Failed to fetch data:', error)); 
+        }
+        fetchJSONData();  
+    </script>
     <h2>Your Current Adherance Report</h2>
 
   
