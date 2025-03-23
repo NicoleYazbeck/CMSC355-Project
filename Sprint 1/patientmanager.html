@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Manage Member_Patient</title>
+</head>
+<body>
+    <div class = "container">
+        <h1>Edit Patient Profile</h1>
+        <div class = "row">
+             <!-- pushes info to backend; need method for taking patient info -->
+            <form method = "post">
+                <!-- makes form to input info -->
+                <div class = "form-group">
+                    <label>Name</label>
+                    <input
+                        type = "text"
+                        id = "pt_name"
+                        name = "pt_name"
+                        required 
+                        placeholder = "Enter Your Name"
+                    />
+                    <label>Date of Birth</label>
+                    <input
+                        type = "text"
+                        id = "pt_dob"
+                        name = "pt_dob"
+                        required
+                        placeholder = "Enter your DOB"
+                    />
+                    <label>Email</label>
+                    <input
+                        type = "text"
+                        id = "pt_email"
+                        name = "pt_email"
+                        required
+                        placeholder = "Enter Your Email"
+                    />
+                </div>
+                <div class = "form-actions">
+                    <button type = "submit" class = "btn btn-success">Save Changes</button>
+                </div>
+                <div class = "form-actions">
+                    <a class = "btn btn-secondary">Cancel</a>
+                </div>
+            </form>
+        </div>
+        
+    </div>
+    <style>
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            border: 1px solid;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+            text-align: center;
+        }
+        input [type = text] {
+            display: inline-block;
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0px;
+            box-sizing: border-box;
+            border-radius: 4px;
+        }
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 5px;
+            border: none;
+            border-radius: 4px;
+            text-decoration: none;
+            color: white;
+        }
+        body {
+            background-color: #678FB4;
+        }
+        .btn-secondary {
+            background-color: #6c757d;
+        }
+        .btn-success {
+            background-color: #28a745;
+        }
+    </style>
+</body>
+</html>
