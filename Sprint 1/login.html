@@ -11,8 +11,13 @@
 
  <script>
         async function login() {
-            const username = document.getElementById("username").value;
-            const password = document.getElementById("password").value;
+            const username = document.getElementById("username").value.trim();
+            const password = document.getElementById("password").value.trim();
+
+            if (!username || !password) {
+                document.getElementById("error-message").innerText = "Username and password cannot be empty.";
+                return;
+            }
             
             const response = await fetch("/login", {
                 method: "POST",
@@ -53,7 +58,7 @@
                 placeholder="Enter your Password" required>
 
             <div class="wrap">
-                <button onclick="login()">
+                <button type="button" onclick="login()">
                     Submit
                 </button>
                 <p id="error-message" style="color: red;"></p>
@@ -61,7 +66,6 @@
         </form>
         
         <p>Not registered?
-            <a href="#" style="text-decoration: none;">
                 <a href="registration.html" class="button-class">Create an account</a>
             </a>
         </p>
