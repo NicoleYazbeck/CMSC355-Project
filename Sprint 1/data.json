@@ -34,6 +34,12 @@
         }
       ],
       "provider_id": 2001
+       "reminders": [
+        {
+          "medication": "Metformin",
+          "time": "08:00 AM"
+        }
+      ]
     },
     {
       "patient_id": 1002,
@@ -48,6 +54,7 @@
         }
       ],
       "provider_id": 2002
+      "reminders" : []
     }
   ],
   "providers": [
