@@ -33,7 +33,7 @@
           "schedule": "Once a day"
         }
       ],
-      "provider_id": 2001
+      "provider_id": 2001,
        "reminders": [
         {
           "medication": "Metformin",
@@ -53,7 +53,7 @@
           "schedule": "As needed"
         }
       ],
-      "provider_id": 2002
+      "provider_id": 2002,
       "reminders" : []
     }
   ],
@@ -75,25 +75,25 @@
     "users": [
       {
         "username": "alice_johnson",
-        "password": "hashed_password_1",
+        "password": "password_1",
         "role": "patient",
         "patient_id": 1001
       },
       {
         "username": "bob_smith",
-        "password": "hashed_password_2",
+        "password": "password_2",
         "role": "patient",
         "patient_id": 1002
       },
       {
         "username": "emily_carter",
-        "password": "hashed_password_3",
+        "password": "password_3",
         "role": "provider",
         "provider_id": 2001
       },
       {
         "username": "mark_taylor",
-        "password": "hashed_password_4",
+        "password": "password_4",
         "role": "provider",
         "provider_id": 2002
       }
