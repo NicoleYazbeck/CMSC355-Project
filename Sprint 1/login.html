@@ -2,10 +2,38 @@
 <html>
 
 <head>
-    <title>Patient Login</title>
+    <title>Login</title>
     <link rel="stylesheet" href="login.css">
-</head>
 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+ <script>
+        async function login() {
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+            
+            const response = await fetch("/login", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ username, password })
+            });
+
+            const result = await response.json();
+            if (response.ok) {
+                // Redirect based on role
+                if (result.role === "patient") {
+                    window.location.href = "/patient_menu.html";
+                } else if (result.role === "provider") {
+                    window.location.href = "/provider_menu.html";
+                }
+            } else {
+                document.getElementById("error-message").innerText = result.error;
+            }
+        }
+    </script>
+</head>
 <body>
     <div class="main">
         <h1>Medical Adherance System</h1>
@@ -15,7 +43,7 @@
             <label for="first">
                 Username:
             </label>
-            <input type="text" id="first" name="first" 
+            <input type="text" id="username" name="username" 
                 placeholder="Enter your Username" required>
 
             <label for="password">
