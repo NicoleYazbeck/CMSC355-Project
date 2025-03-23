@@ -9,32 +9,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 
- <script>
+    <script>
         async function login() {
-            const username = document.getElementById("username").value.trim();
-            const password = document.getElementById("password").value.trim();
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
 
-            if (!username || !password) {
-                document.getElementById("error-message").innerText = "Username and password cannot be empty.";
-                return;
-            }
-            
-            const response = await fetch("/login", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ username, password })
-            });
+            try {
+                // Fetch the JSON file
+                const response = await fetch("data.json");
+                const data = await response.json();
 
-            const result = await response.json();
-            if (response.ok) {
-                // Redirect based on role
-                if (result.role === "patient") {
-                    window.location.href = "/patient_menu.html";
-                } else if (result.role === "provider") {
-                    window.location.href = "/provider_menu.html";
+                // Find the user in the JSON data
+                const user = data.auth.users.find(u => u.username === username && u.password === password);
+
+                if (user) {
+                    alert("Login successful! Redirecting...");
+                    if (user.role === "patient") {
+                        window.location.href = "patient_menu.html";
+                    } else if (user.role === "provider") {
+                        window.location.href = "provider_menu.html";
+                    }
+                } else {
+                    document.getElementById("error-message").innerText = "Invalid username or password.";
                 }
-            } else {
-                document.getElementById("error-message").innerText = result.error;
+            } catch (error) {
+                console.error("Error loading user data:", error);
+                document.getElementById("error-message").innerText = "Error loading user data.";
             }
         }
     </script>
@@ -58,7 +58,7 @@
                 placeholder="Enter your Password" required>
 
             <div class="wrap">
-                <button type="button" onclick="login()">
+                <button onclick="login()">
                     Submit
                 </button>
                 <p id="error-message" style="color: red;"></p>
