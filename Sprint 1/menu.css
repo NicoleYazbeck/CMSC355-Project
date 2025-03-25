@@ -1,7 +1,4 @@
-* {
-  padding: 0;
-  margin: 0;
-}
+
 
 body {
   display: flex;
@@ -18,34 +15,6 @@ div {
   text-align: center;
 }
 
-p {
-  margin: 16px;
-  font-size: 96px;
-  color: #ccc;
-  text-transform: uppercase;
-  font-weight: 600;
-  transition: all 1s ease-in-out;
-  position: relative;
-
-  &::before {
-    content: attr(data-item);
-    transition: all 1s ease-in-out;
-    color: #678FB4;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    width: 0;
-    overflow: hidden;
-  }
-
-  &:hover {
-    &::before {
-      width: 100%;
-    }
-  }
-}
 
 nav {
   background: #f9f9f9;
@@ -54,41 +23,9 @@ nav {
   float: left;
   .menuItems {
     list-style: none;
-    display: flex;
 
-    li {
-      margin: 50px;
 
-      a {
-        text-decoration: none;
-        color: #ccc;
-        font-size: 24px;
-        font-weight: 400;
-        transition: all 0.5s ease-in-out;
-        position: relative;
-        text-transform: uppercase;
 
-        &::before {
-          content: attr(data-item);
-          transition: 0.5s;
-          color: #678FB4;
-          position: absolute;
-          top: 0;
-          bottom: 0;
-          left: 0;
-          right: 0;
-          width: 0;
-          overflow: hidden;
-        }
-
-        &:hover {
-          &::before {
-            width: 100%;
-            transition: all 0.5s ease-in-out;
-          }
-        }
-      }
-    }
   }
 }
 
@@ -103,14 +40,4 @@ footer {
   background-color: #f1f1f1;
   color: #000000;
   text-align: center;
-
-  a {
-    text-decoration: none;
-    color: inherit;
-    border-bottom: 1px solid;
-
-    &:hover {
-      border-bottom: 1px transparent;
-    }
-  }
 }
