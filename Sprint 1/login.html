@@ -19,10 +19,21 @@
                 const response = await fetch("data.json");
                 const data = await response.json();
 
-                // Find the user in the JSON data
-                const user = data.auth.users.find(u => u.username === username && u.password === password);
+                checkIfUserExists(username, password, data)
 
-                if (user) {
+            } catch (error) {
+                console.error("Error loading user data:", error);
+                document.getElementById("error-message").innerText = "Error loading user data.";
+            }
+        }
+
+    function checkIfUserExists(username, password, data) {
+
+
+        // Find the user in the JSON data
+        const user = data.auth.users.find(u => u.username === username && u.password === password);
+
+        if (user) {
                     alert("Login successful! Redirecting...");
                     if (user.role === "patient") {
                         window.location.href = "patient_menu.html";
@@ -32,11 +43,8 @@
                 } else {
                     document.getElementById("error-message").innerText = "Invalid username or password.";
                 }
-            } catch (error) {
-                console.error("Error loading user data:", error);
-                document.getElementById("error-message").innerText = "Error loading user data.";
-            }
-        }
+    }
+
     </script>
 </head>
 <body>
