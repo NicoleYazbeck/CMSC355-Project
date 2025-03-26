@@ -26,7 +26,7 @@ describe("checkIfUserExists", () => {
         }
     };
 
-    test("should return 0 and redirect for a valid patient login", () => {
+    test("should redirect for a valid patient login", () => {
         delete window.location;
         window.location = { href: "" }; // Mock window.location
 
@@ -34,7 +34,7 @@ describe("checkIfUserExists", () => {
         expect(window.location.href).toBe("patient_menu.html");
     });
 
-    test("should return 0 and redirect for a valid provider login", () => {
+    test("should redirect for a valid provider login", () => {
         delete window.location;
         window.location = { href: "" }; // Mock window.location
 
@@ -42,10 +42,22 @@ describe("checkIfUserExists", () => {
         expect(window.location.href).toBe("provider_menu.html");
     });
 
-    test("should return 1 and display an error message for invalid credentials", () => {
+    test("should display an error message for invalid credentials", () => {
         const result = checkIfUserExists("wrongUser", "wrongPass", mockData);
         expect(document.getElementById("error-message").innerText).toBe("Invalid username or password.");
     });
+
+    test("should display an error message for invalid credentials", () => {
+        const result = checkIfUserExists("wrongUser", "testPass", mockData);
+        expect(document.getElementById("error-message").innerText).toBe("Invalid username or password.");
+    });
+
+    test("should display an error message for invalid credentials", () => {
+        const result = checkIfUserExists("testUser", "wrongPass", mockData);
+        expect(document.getElementById("error-message").innerText).toBe("Invalid username or password.");
+    });
+
+    
 });
 
 describe("login", () => {
