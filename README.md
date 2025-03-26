@@ -22,3 +22,7 @@
 
 `/__tests__` <br>
 > Testing files <br>
+
+`/Research` <br>
+> Research Corner assignments rendered using quarto <br>
+
