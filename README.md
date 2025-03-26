@@ -11,11 +11,14 @@
 
 ## Directory Structure
 
-`/Sprint 1`
-: Source code and data for sprint 1
-`/Sprint 2`
-: Source code and data for sprint 2
-`/Sprint 3`
-: Source code and data for sprint 3
-`/__tests__`
-: testing files
+`/Sprint 1` <br>
+> Source code and data for sprint 1 <br>
+
+`/Sprint 2` <br>
+> Source code and data for sprint 2 <br>
+
+`/Sprint 3` <br>
+> Source code and data for sprint 3 <br>
+
+`/__tests__` <br>
+> Testing files <br>
