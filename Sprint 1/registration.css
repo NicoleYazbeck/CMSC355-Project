@@ -1,37 +1,43 @@
 /*registration.css*/
 
-h1 {
-    color: #678FB4;
-}
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f4f8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
 
-label {
-    display: block;
-    width: 100%;
-    margin-top: 10px;
-    margin-bottom: 5px;
-    text-align: left;
-    color: #555;
-    font-weight: bold;
-}
+        .main {
+            background-color: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 400px;
+        }
 
-input {
-    width: 80%;
-}
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0 20px 0;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+        }
 
-button {
-    padding: 15px;
-    border-radius: 10px;
-    margin-top: 15px;
-    margin-bottom: 15px;
-    border: none;
-    color: white;
-    cursor: pointer;
-    background-color: #95A3A4;
-    font-size: 16px;
-}
+        button {
+            padding: 10px 20px;
+            background-color: #678FB4;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
 
-.wrap {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+        button:hover {
+            background-color: #678FB4;
+        }
+
+        #results {
+            margin-top: 20px;
+        }
