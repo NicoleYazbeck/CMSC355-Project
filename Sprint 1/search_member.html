@@ -47,30 +47,7 @@
             margin-top: 20px;
         }
     </style>
-    <script>
-        function searchPatient() {
-            const name = document.getElementById("searchName").value.toLowerCase();
-            fetch("data.json")
-                .then(res => res.json())
-                .then(data => {
-                    const resultsDiv = document.getElementById("results");
-                    resultsDiv.innerHTML = "";
-                    const matched = data.patients.filter(p =>
-                        p.name.toLowerCase().includes(name)
-                    );
-                    if (matched.length === 0) {
-                        resultsDiv.innerHTML = "<p>No patients found.</p>";
-                    } else {
-                        matched.forEach(p => {
-                            const entry = document.createElement("div");
-                            entry.innerHTML = `<strong>${p.name}</strong><br>DOB: ${p.dob}<br>Conditions: ${p.medical_conditions.join(", ")}`;
-                            resultsDiv.appendChild(entry);
-                            resultsDiv.appendChild(document.createElement("hr"));
-                        });
-                    }
-                });
-        }
-    </script>
+<script src="search_patient.js"></script> 
 </head>
 <body>
     <div class="main">
