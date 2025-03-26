@@ -1,6 +1,6 @@
-#Medical Adherence System
+# Medical Adherence System
 ____________________________________
-##Group Members:
+## Group Members:
 * Yosi Assefa
 * Kevin Hwangpo
 * Kelly Hwangpo
