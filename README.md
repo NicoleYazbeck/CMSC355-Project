@@ -1,8 +1,8 @@
-My groupmembers are:
-- 
-- 
-- 
-- 
+Medical Adherence System
+Group Members:
+* Yosi Assefa
+* Kevin Hwangpo
+* Kelly Hwangpo
+* Zerlyne N-Simons
+* Nicole Yazbeck
 
-
------------------- Fill in some information about your project under this ------------------
