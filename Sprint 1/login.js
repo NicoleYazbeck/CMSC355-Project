@@ -1,4 +1,5 @@
-async function login() {
+async function login(event) {
+    event.preventDefault();  // Prevent the form from submitting and reloading the page
     const username = document.getElementById("username").value;
     const password = document.getElementById("password").value;
 
@@ -11,7 +12,6 @@ async function login() {
         document.getElementById("error-message").innerText = "Error loading user data.";
     }
 }
-
 function checkIfUserExists(username, password, data) {
     const user = data.auth.users.find(u => u.username === username && u.password === password);
 
