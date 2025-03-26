@@ -1,5 +1,5 @@
-async function login(event) {
-    event.preventDefault();  // Prevent the form from submitting and reloading the page
+async function login() {
+
     const username = document.getElementById("username").value;
     const password = document.getElementById("password").value;
 
