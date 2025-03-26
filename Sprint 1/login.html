@@ -9,41 +9,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 
-    <script>
-        async function login() {
-            const username = document.getElementById("username").value;
-            const password = document.getElementById("password").value;
-
-            try {
-                // Fetch the JSON file
-                const response = await fetch("data.json");
-                const data = await response.json();
-
-                checkIfUserExists(username, password, data)
-
-            } catch (error) {
-                console.error("Error loading user data:", error);
-                document.getElementById("error-message").innerText = "Error loading user data.";
-            }
-        }
-
-    function checkIfUserExists(username, password, data) {
-
-
-        // Find the user in the JSON data
-        const user = data.auth.users.find(u => u.username === username && u.password === password);
-
-        if (user) {
-                    alert("Login successful! Redirecting...");
-                    if (user.role === "patient") {
-                        window.location.href = "patient_menu.html";
-                    } else if (user.role === "provider") {
-                        window.location.href = "provider_menu.html";
-                    }
-                } else {
-                    document.getElementById("error-message").innerText = "Invalid username or password.";
-                }
-    }
+    <script src="login.js" type="module" defer>
+      
+            import { checkIfUserExists } from './login.js';
+            import { login } from './login.js';
 
     </script>
 </head>
