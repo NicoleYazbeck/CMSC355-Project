@@ -9,6 +9,8 @@
 
 ## Overview
 
+The Medical Adherence System is a healthcare application designed to help patients follow prescribed medication schedules and allow healthcare providers to monitor adherence through submitted reports. This system ensures that patients take their medications correctly and on time while giving providers insights into adherence trends.
+
 ## Directory Structure
 
 `/Sprint 1` <br>
