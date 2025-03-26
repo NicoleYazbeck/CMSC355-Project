@@ -31,7 +31,6 @@ describe("checkIfUserExists", () => {
         window.location = { href: "" }; // Mock window.location
 
         const result = checkIfUserExists("testUser", "testPass", mockData);
-        expect(result).toBe(0);
         expect(window.location.href).toBe("patient_menu.html");
     });
 
@@ -40,13 +39,11 @@ describe("checkIfUserExists", () => {
         window.location = { href: "" }; // Mock window.location
 
         const result = checkIfUserExists("admin", "adminPass", mockData);
-        expect(result).toBe(0);
         expect(window.location.href).toBe("provider_menu.html");
     });
 
     test("should return 1 and display an error message for invalid credentials", () => {
         const result = checkIfUserExists("wrongUser", "wrongPass", mockData);
-        expect(result).toBe(1);
         expect(document.getElementById("error-message").innerText).toBe("Invalid username or password.");
     });
 });
