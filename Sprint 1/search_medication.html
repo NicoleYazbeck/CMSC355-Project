@@ -48,54 +48,28 @@
         }
     </style>
     <script>
-function searchMedication() {
-    // Assuming the logged-in user's username is stored in localStorage (or you can replace it with the actual method you're using for authentication)
-    const loggedInUser = localStorage.getItem("loggedInUser"); 
-
-    if (!loggedInUser) {
-        alert("No user logged in.");
-        return;
-    }
-
-    const name = document.getElementById("searchName").value.toLowerCase();
-
-    fetch("data.json")
-        .then(res => res.json())
-        .then(data => {
-            const resultsDiv = document.getElementById("results");
-            resultsDiv.innerHTML = "";
-
-            // Find the logged-in user's patient information
-            const user = data.auth.users.find(user => user.username === loggedInUser);
-            if (!user) {
-                resultsDiv.innerHTML = "<p>User not found.</p>";
-                return;
-            }
-
-            // Get the corresponding patient data for the logged-in user
-            const patient = data.patients.find(p => p.patient_id === user.patient_id);
-            if (!patient) {
-                resultsDiv.innerHTML = "<p>No patient data found.</p>";
-                return;
-            }
-
-            // Filter medications for the logged-in user based on the search term
-            const matched = patient.medications.filter(medication =>
-                medication.name.toLowerCase().includes(name)
-            );
-
-            if (matched.length === 0) {
-                resultsDiv.innerHTML = "<p>No medications found.</p>";
-            } else {
-                matched.forEach(med => {
-                    const entry = document.createElement("div");
-                    entry.innerHTML = `<strong>${med.name}</strong><br>Dosage: ${med.dosage}<br>Schedule: ${med.schedule}`;
-                    resultsDiv.appendChild(entry);
-                    resultsDiv.appendChild(document.createElement("hr"));
+        function searchMedication() {
+            const name = document.getElementById("searchName").value.toLowerCase();
+            fetch("data.json")
+                .then(res => res.json())
+                .then(data => {
+                    const resultsDiv = document.getElementById("results");
+                    resultsDiv.innerHTML = "";
+                    const matched = data.patients["medications"].filter(p =>
+                        p.name.toLowerCase().includes(name)
+                    );
+                    if (matched.length === 0) {
+                        resultsDiv.innerHTML = "<p>No patients found.</p>";
+                    } else {
+                        matched.forEach(p => {
+                            const entry = document.createElement("div");
+                            entry.innerHTML = `<strong>${p.medications.name}</strong><br>Dosage: ${p.medications.dosage}<br>Schedule: ${p.medications.dosage}`;
+                            resultsDiv.appendChild(entry);
+                            resultsDiv.appendChild(document.createElement("hr"));
+                        });
+                    }
                 });
-            }
-        });
-}
+        }
     </script>
 </head>
 <body>
