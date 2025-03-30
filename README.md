@@ -13,16 +13,16 @@ The Medical Adherence System is a healthcare application designed to help patien
 
 ## Directory Structure
 
-`/Sprint 1` <br>
+`public/Sprint 1` <br>
 > Source code and data for sprint 1 <br>
 
-`/Sprint 2` <br>
+`public/Sprint 2` <br>
 > Source code and data for sprint 2 <br>
 
-`/Sprint 3` <br>
+`public/Sprint 3` <br>
 > Source code and data for sprint 3 <br>
 
-`/__tests__` <br>
+`public/__tests__` <br>
 > Testing files <br>
 
 `/Research` <br>
