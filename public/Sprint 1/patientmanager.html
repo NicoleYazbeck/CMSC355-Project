@@ -1,97 +1,230 @@
 <!DOCTYPE html>
 <html>
-
-<head>
+  <head>
     <title>Manage Member_Patient</title>
-</head>
-<body>
-    <div class = "container">
-        <h1>Edit Patient Profile</h1>
-        <div class = "row">
-             <!-- pushes info to backend; need method for taking patient info -->
-            <form method = "post">
-                <!-- makes form to input info -->
-                <div class = "form-group">
-                    
-                    <label>Name</label>
-                    <input
-                        type = "text"
-                        id = "pt_name"
-                        name = "pt_name"
-                        required 
-                        placeholder = "Enter Your Name"
-                    /><br>
-                    <label>Date of Birth</label>
-                    <input
-                        type = "text"
-                        id = "pt_dob"
-                        name = "pt_dob"
-                        required
-                        placeholder = "Enter your DOB"
-                    /><br>
-                    <label>Email</label>
-                    <input
-                        type = "text"
-                        id = "pt_email"
-                        name = "pt_email"
-                        required
-                        placeholder = "Enter Your Email"
-                    /><br>
-                        
-                </div>
-                <div class = "form-actions">
-                    <button type = "submit" class = "btn btn-success">Save Changes</button>
-                </div>
-                <div class = "form-actions">
-                    <br>
-                    <a class = "btn btn-secondary">Cancel</a>
-                </div>
-            </form>
-        </div>
-        
-    </div>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f4f8;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f4f8;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        padding: 40px;
+      }
 
-        .main {
-            background-color: white;
-            padding: 40px;
-            border-radius: 12px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            width: 400px;
-        }
+      .container,
+      .reminder-container {
+        background-color: white;
+        padding: 30px;
+        border-radius: 12px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        width: 400px;
+        margin: 20px;
+      }
 
-        input[type="text"] {
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0 20px 0;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-        }
+      h1,
+      h2 {
+        text-align: center;
+      }
 
-        button {
-            padding: 10px 20px;
-            background-color: #678FB4;
-            color: white;
-            border: none;
-            border-radius: 2px;
-            cursor: pointer;
-        }
+      .form-group label,
+      .reminder-container label {
+        display: block;
+        margin-top: 10px;
+        font-weight: bold;
+        text-align: left;
+      }
 
-        button:hover {
-            background-color: #678FB4;
-        }
+      input[type="text"],
+      input[type="time"],
+      select {
+        width: 100%;
+        padding: 10px;
+        margin-top: 5px;
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+      }
 
-        #results {
-            margin-top: 20px;
-        }
+      .form-actions {
+        text-align: center;
+        margin-top: 15px;
+      }
+
+      button {
+        padding: 10px 20px;
+        background-color: #678fb4;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+      }
+
+      button:hover {
+        background-color: #56779e;
+      }
+
+      .status-message {
+        margin-top: 15px;
+        font-size: 14px;
+        color: #333;
+        text-align: center;
+      }
     </style>
-</body>
+  </head>
+  <body>
+    <!-- Patient Info Form -->
+    <div class="container">
+      <h1>Edit Patient Profile</h1>
+      <form method="post">
+        <div class="form-group">
+          <label for="pt_name">Name</label>
+          <input
+            type="text"
+            id="pt_name"
+            name="pt_name"
+            required
+            placeholder="Enter Your Name"
+          />
+
+          <label for="pt_dob">Date of Birth</label>
+          <input
+            type="text"
+            id="pt_dob"
+            name="pt_dob"
+            required
+            placeholder="Enter your DOB"
+          />
+
+          <label for="pt_email">Email</label>
+          <input
+            type="text"
+            id="pt_email"
+            name="pt_email"
+            required
+            placeholder="Enter Your Email"
+          />
+        </div>
+
+        <div class="form-actions">
+          <button type="submit" class="btn btn-success">Save Changes</button>
+          <br /><br />
+          <a class="btn btn-secondary">Cancel</a>
+        </div>
+      </form>
+    </div>
+
+    <!-- Reminder Change Form -->
+    <div class="reminder-container">
+      <h2>Request Reminder Change</h2>
+      <form id="reminderForm">
+        <label for="reminderId">Reminder ID</label>
+        <input
+          type="text"
+          id="reminderId"
+          placeholder="Enter Reminder ID"
+          required
+        />
+
+        <label for="newTime">New Time</label>
+        <input type="time" id="newTime" value="00:00" required />
+
+        <label for="newFrequency">New Frequency</label>
+        <select id="newFrequency" required>
+          <option value="">Select Frequency</option>
+          <option value="Daily">Daily</option>
+          <option value="Twice a day">Twice a day</option>
+          <option value="Every 6 hours">Every 6 hours</option>
+          <option value="Weekly">Weekly</option>
+          <option value="As needed">As needed</option>
+        </select>
+
+        <label for="medication">Medication</label>
+        <input
+          type="text"
+          id="medication"
+          placeholder="Enter Medication Name"
+          required
+        />
+
+        <label for="assignedProvider">Assigned Provider</label>
+        <input
+          type="text"
+          id="assignedProvider"
+          placeholder="Enter Provider Name"
+          required
+        />
+
+        <div class="form-actions">
+          <button type="submit">Submit Reminder Change</button>
+        </div>
+      </form>
+
+      <div id="result" class="status-message"></div>
+    </div>
+
+    <!-- Firebase SDK + Function Call -->
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
+      import {
+        getFunctions,
+        httpsCallable,
+      } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-functions.js";
+      import {
+        getAuth,
+        onAuthStateChanged,
+      } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js";
+
+      const firebaseConfig = {
+        apiKey: "AIzaSyB9NTiW0H0Wd0ihUWcWM3nQPNWKQN_uMUQ",
+        authDomain: "cmsc355project2.firebaseapp.com",
+        databaseURL: "https://cmsc355project2-default-rtdb.firebaseio.com",
+        projectId: "cmsc355project2",
+        storageBucket: "cmsc355project2.appspot.com",
+        messagingSenderId: "865264890690",
+        appId: "1:865264890690:web:5d15c22c73adb85fd18edb",
+        measurementId: "G-DGWF7B0EBH",
+      };
+
+      const app = initializeApp(firebaseConfig);
+      const functions = getFunctions(app);
+      const auth = getAuth(app);
+
+      const form = document.getElementById("reminderForm");
+      const resultDiv = document.getElementById("result");
+
+      onAuthStateChanged(auth, (user) => {
+        if (user) {
+          form.addEventListener("submit", async (e) => {
+            e.preventDefault();
+
+            const data = {
+              reminderId: document.getElementById("reminderId").value,
+              userId: user.uid,
+              newTime: document.getElementById("newTime").value,
+              newFrequency: document.getElementById("newFrequency").value,
+              medication: document.getElementById("medication").value,
+              assignedProvider:
+                document.getElementById("assignedProvider").value,
+            };
+
+            const submitReminderChange = httpsCallable(
+              functions,
+              "processReminderChangeRequest"
+            );
+
+            try {
+              const res = await submitReminderChange(data);
+              resultDiv.textContent = res.data.message;
+            } catch (error) {
+              console.error("Firebase function error:", error);
+              resultDiv.textContent = `Error: ${error.message}`;
+            }
+          });
+        } else {
+          resultDiv.textContent = "Please log in to submit reminder changes.";
+        }
+      });
+    </script>
+  </body>
 </html>
