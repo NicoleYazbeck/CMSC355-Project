@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Manage Reminders</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f4f8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .main {
+            background-color: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 450px;
+        }
+
+        input[type="text"], input[type="time"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0 20px 0;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #678FB4;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+
+        button:hover {
+            background-color: #678FB4;
+        }
+
+        ul {
+            padding-left: 0;
+        }
+
+        li {
+            list-style: none;
+            padding: 5px 0;
+            border-bottom: 1px solid #ddd;
+        }
+    </style>
+    <script>
+        function addReminder() {
+            const med = document.getElementById("medication").value;
+            const time = document.getElementById("reminderTime").value;
+
+            if (!med || !time) {
+                alert("Please fill in both fields.");
+                return;
+            }
+
+            const list = document.getElementById("reminderList");
+            const li = document.createElement("li");
+            li.innerHTML = `<strong>${med}</strong> at ${time} <button onclick="this.parentElement.remove()">Delete</button>`;
+            list.appendChild(li);
+
+            document.getElementById("medication").value = "";
+            document.getElementById("reminderTime").value = "";
+        }
+    </script>
+</head>
+<body>
+    <div class="main">
+        <h2>Manage Reminders</h2>
+        <label for="medication">Medication Name:</label>
+        <input type="text" id="medication" placeholder="e.g., Metformin">
+
+        <label for="reminderTime">Reminder Time:</label>
+        <input type="time" id="reminderTime">
+
+        <button onclick="addReminder()">Add Reminder</button>
+
+        <h3>Your Reminders:</h3>
+        <ul id="reminderList"></ul>
+    </div>
+</body>
+</html>
