@@ -54,38 +54,104 @@
             padding-bottom: 6px;
         }
     </style>
-    <script>
-        function addProvider() {
-            const name = document.getElementById("providerName").value;
-            const contact = document.getElementById("contact").value;
-
-            if (!name || !contact) {
-                alert("Please fill out all fields.");
-                return;
-            }
-
-            const li = document.createElement("li");
-            li.innerHTML = `<strong>${name}</strong><br>Contact: ${contact} <br><button onclick="this.parentElement.remove()">Remove</button>`;
-            document.getElementById("providerList").appendChild(li);
-
-            document.getElementById("providerName").value = "";
-            document.getElementById("contact").value = "";
-        }
-    </script>
-</head>
 <body>
     <div class="main">
-        <h2>Manage Providers</h2>
-        <label for="providerName">Provider Name:</label>
-        <input type="text" id="providerName">
-
-        <label for="contact">Contact Email:</label>
-        <input type="email" id="contact">
-
-        <button onclick="addProvider()">Add Provider</button>
-
-        <h3>Provider List:</h3>
-        <ul id="providerList"></ul>
+      <h2>Update Provider Info</h2>
+  
+      <label for="providerId">Enter Your Provider ID:</label>
+      <input type="number" id="providerId" />
+  
+      <button id="loadBtn">Load Info</button>
+        <br><br>
+      <div id="updateForm" style="display:none;">
+        <label for="providerName">New Name:</label>
+        <input type="text" id="providerName" />
+  
+        <label for="contact">New Contact Email:</label>
+        <input type="email" id="contact" />
+  
+        <button id="updateBtn">Update Info</button>
+      </div>
+      <br>
+      <div class="result" id="result" style="display:none;"></div>
     </div>
-</body>
+  
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js";
+      import {
+        getFirestore,
+        collection,
+        getDocs,
+        doc,
+        updateDoc
+      } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js";
+  
+      const firebaseConfig = {
+        apiKey: "AIzaSyB9NTiW0H0Wd0ihUWcWM3nQPNWKQN_uMUQ",
+        authDomain: "cmsc355project2.firebaseapp.com",
+        projectId: "cmsc355project2",
+        storageBucket: "cmsc355project2.appspot.com",
+        messagingSenderId: "865264890690",
+        appId: "1:865264890690:web:5d15c22c73adb85fd18edb",
+        measurementId: "G-DGWF7B0EBH"
+      };
+  
+      const app = initializeApp(firebaseConfig);
+      const db = getFirestore(app);
+      const providersRef = collection(db, "providers");
+  
+      let currentDocId = null;
+  
+      document.getElementById("loadBtn").addEventListener("click", async () => {
+        const inputId = parseInt(document.getElementById("providerId").value.trim());
+        const snapshot = await getDocs(providersRef);
+        let found = false;
+  
+        snapshot.forEach(docSnap => {
+          const data = docSnap.data();
+          if (data.id === inputId) {
+            found = true;
+            currentDocId = docSnap.id;
+            document.getElementById("providerName").value = data.name;
+            document.getElementById("contact").value = data.contact;
+            document.getElementById("updateForm").style.display = "block";
+            document.getElementById("result").style.display = "none";
+          }
+        });
+  
+        if (!found) {
+          alert("Provider not found.");
+          document.getElementById("updateForm").style.display = "none";
+          document.getElementById("result").style.display = "none";
+        }
+      });
+  
+      document.getElementById("updateBtn").addEventListener("click", async () => {
+        const newName = document.getElementById("providerName").value.trim();
+        const newContact = document.getElementById("contact").value.trim();
+  
+        if (!newName || !newContact) {
+          alert("Please fill in both name and contact.");
+          return;
+        }
+  
+        try {
+          await updateDoc(doc(db, "providers", currentDocId), {
+            name: newName,
+            contact: newContact
+          });
+  
+          document.getElementById("result").innerHTML = `
+            <strong>Update Successful!</strong><br>
+            Name: ${newName}<br>
+            Contact: ${newContact}
+          `;
+          document.getElementById("result").style.display = "block";
+        } catch (error) {
+          console.error("Update failed:", error);
+          alert("Error updating provider.");
+        }
+      });
+    </script>
+  </body>
 </html>
