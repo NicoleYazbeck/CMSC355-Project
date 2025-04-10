@@ -1,92 +1,119 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Patient Registration</title>
-    <link rel="stylesheet" href="registration.css">
-
-    <!-- Firebase App (core) -->
-    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app-compat.js"></script>
-
-    <!-- Firebase Authentication -->
-    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth-compat.js"></script>
-
-    <!-- Firestore -->
-    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore-compat.js"></script>
-    
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Patient Registration</title>
+  <link rel="stylesheet" href="registration.css" />
 </head>
+<body>
+  <div class="main">
+    <h1>Patient Registration</h1>
+    <form id="registrationForm">
+      <label for="name">Full Name:</label>
+      <input type="text" id="name" name="name" required /><br /><br />
 
-<script>
-import { initializeApp, firestore } from "firebase/app";
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
-const firebaseConfig = { 
-  apiKey: "AIzaSyB9NTiW0H0Wd0ihUWcWM3nQPNWKQN_uMUQ",
-  authDomain: "cmsc355project2.firebaseapp.com",
-  databaseURL: "https://cmsc355project2-default-rtdb.firebaseio.com",
-  projectId: "cmsc355project2",
-  storageBucket: "cmsc355project2.firebasestorage.app",
-  messagingSenderId: "865264890690",
-  appId: "1:865264890690:web:5d15c22c73adb85fd18edb",
-  measurementId: "G-DGWF7B0EBH"
-};
-  
-    firebase.initializeApp(firebaseConfig);
-    const db = firebase.firestore();
-  
-    async function registerPatient(event) {
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required /><br /><br />
+
+      <label for="age">Age:</label>
+      <input type="number" id="age" name="age" required /><br /><br />
+
+      <label for="patient_id">Patient ID:</label>
+      <input type="number" id="patient_id" name="patient_id" required /><br /><br />
+
+      <label for="username">Username:</label>
+      <input type="text" id="username" name="username" required /><br /><br />
+
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" required /><br /><br />
+
+      <button type="submit">Register</button>
+      <p id="error-message" style="color: red;"></p>
+    </form>
+  </div>
+
+  <!-- Firebase SDKs -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js";
+    import {
+      getFirestore,
+      collection,
+      addDoc,
+      query,
+      where,
+      getDocs
+    } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js";
+
+    // Your Firebase config
+    const firebaseConfig = {
+      apiKey: "AIzaSyB9NTiW0H0Wd0ihUWcWM3nQPNWKQN_uMUQ",
+      authDomain: "cmsc355project2.firebaseapp.com",
+      projectId: "cmsc355project2",
+      storageBucket: "cmsc355project2.appspot.com",
+      messagingSenderId: "865264890690",
+      appId: "1:865264890690:web:5d15c22c73adb85fd18edb",
+      measurementId: "G-DGWF7B0EBH"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    // Handle form submission
+    document.getElementById("registrationForm").addEventListener("submit", async (event) => {
       event.preventDefault();
-  
-      const name = document.getElementById("name").value;
-      const email = document.getElementById("email").value;
-      const age = parseInt(document.getElementById("age").value);
-      const patient_id = parseInt(document.getElementById("patient_id").value);
-      const username = document.getElementById("username").value;
-      const password = document.getElementById("password").value;
+
+      const name = document.getElementById("name").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const age = parseInt(document.getElementById("age").value.trim());
+      const patient_id = parseInt(document.getElementById("patient_id").value.trim());
+      const username = document.getElementById("username").value.trim();
+      const password = document.getElementById("password").value.trim();
       const errorEl = document.getElementById("error-message");
-  
-      // Optional: generate date of birth from age
-      const dob = calculateDOB(age); // Adds rough DOB estimation
-  
+
+      const dob = calculateDOB(age);
+
       try {
-        // Check if username exists
-        const authSnap = await db.collection("auth")
-          .where("username", "==", username)
-          .get();
-  
-        if (!authSnap.empty) {
-          errorEl.innerText = "Username already taken.";
+        // Check for duplicate username
+        const authQuery = query(
+          collection(db, "auth"),
+          where("username", "==", username)
+        );
+        const authSnapshot = await getDocs(authQuery);
+
+        if (!authSnapshot.empty) {
+          errorEl.textContent = "Username already taken.";
           return;
         }
-  
-        // Add user to 'users' collection
-        await db.collection("users").add({
+
+        // Add patient to 'users' collection
+        await addDoc(collection(db, "users"), {
           id: patient_id,
-          name: name,
-          email: email,
-          age: age,
-          dob: dob,
-          medications: [] // default empty array
+          name,
+          email,
+          age,
+          dob,
+          medications: []
         });
-  
+
         // Add credentials to 'auth' collection
-        await db.collection("auth").add({
+        await addDoc(collection(db, "auth"), {
           id: patient_id,
-          username: username,
-          password: password, 
+          username,
+          password,
           role: "patient"
         });
-  
+
         alert("Registration successful!");
-        window.location.href = "login.html";
+        window.location.href = "../Sprint%201/login.html";
       } catch (error) {
-        console.error("Error during registration:", error);
-        errorEl.innerText = "Error: " + error.message;
+        console.error("Registration error:", error);
+        errorEl.textContent = "Error: " + error.message;
       }
-    }
-  
-    // Utility function to estimate DOB from age
+    });
+
+    // Estimate date of birth
     function calculateDOB(age) {
       const today = new Date();
       const year = today.getFullYear() - age;
@@ -95,35 +122,5 @@ const firebaseConfig = {
       return `${year}-${month}-${day}`;
     }
   </script>
-  
-  
-
-<body>
-    <div class="main" >
-    <h1>Patient Registration</h1>
-    <form id="registrationForm" onsubmit="registerPatient(event)">
-        <label for="name">Full Name:</label>
-        <input type="text" id="name" name="name" required><br><br>
-
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required><br><br>
-
-        <label for="age">Age:</label>
-        <input type="number" id="age" name="age" required><br><br>
-
-        <label for="patient_id">Patient ID:</label>
-        <input type="number" id="patient_id" name="patient_id" required><br><br>
-
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username" required><br><br>
-
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required><br><br>
-
-        <button type="submit">Register</button>
-    <p id="error-message" style="color: red;"></p>
-    </form>
-    </div>
-
 </body>
 </html>

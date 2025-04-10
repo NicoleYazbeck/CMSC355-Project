@@ -1,75 +1,130 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Submit Medication</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f4f8;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
+  <meta charset="UTF-8" />
+  <title>Submit Medication</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f4f8;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
 
-        .main {
-            background-color: white;
-            padding: 40px;
-            border-radius: 12px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            width: 400px;
-        }
+    .main {
+      background-color: white;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      width: 400px;
+    }
 
-        input[type="text"], input[type="datetime-local"] {
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0 20px 0;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-        }
+    input[type="text"],
+    input[type="datetime-local"] {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0 20px 0;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
 
-        button {
-            padding: 10px 20px;
-            background-color: #678FB4;
-            color: white;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-        }
+    button {
+      padding: 10px 20px;
+      background-color: #678FB4;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
 
-        button:hover {
-            background-color: #678FB4;
-        }
-    </style>
-    <script>
-        function submitMedication() {
-            const medication = document.getElementById("medication").value;
-            const time = document.getElementById("time").value;
-
-            if (!medication || !time) {
-                alert("Please fill out all fields.");
-                return;
-            }
-
-            alert("Medication submission recorded successfully!");
-            document.getElementById("submissionForm").reset();
-        }
-    </script>
+    button:hover {
+      background-color: #56779a;
+    }
+  </style>
 </head>
 <body>
-    <div class="main">
-        <h2>Submit Medication Taken</h2>
-        <form id="submissionForm" onsubmit="event.preventDefault(); submitMedication();">
-            <label for="medication">Medication Name:</label>
-            <input type="text" id="medication" required>
+  <div class="main">
+    <h2>Submit Medication Taken</h2>
+    <form id="submissionForm">
+      <label for="patientName">Patient Name:</label>
+      <input type="text" id="patientName" required />
 
-            <label for="time">Time Taken:</label>
-            <input type="datetime-local" id="time" required>
+      <label for="medication">Medication Name:</label>
+      <input type="text" id="medication" required />
 
-            <button type="submit">Submit</button>
-        </form>
-    </div>
+      <label for="dosage">Dosage:</label>
+      <input type="text" id="dosage" placeholder="e.g. 90 mg" required />
+
+      <label for="time">Time Taken:</label>
+      <input type="datetime-local" id="time" required />
+
+      <button type="submit">Submit</button>
+      <p id="status" style="color: green; margin-top: 10px;"></p>
+    </form>
+  </div>
+
+  <!-- Firebase SDK -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js";
+    import {
+      getFirestore,
+      collection,
+      addDoc
+    } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyB9NTiW0H0Wd0ihUWcWM3nQPNWKQN_uMUQ",
+      authDomain: "cmsc355project2.firebaseapp.com",
+      projectId: "cmsc355project2",
+      storageBucket: "cmsc355project2.appspot.com",
+      messagingSenderId: "865264890690",
+      appId: "1:865264890690:web:5d15c22c73adb85fd18edb"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    document.getElementById("submissionForm").addEventListener("submit", async (event) => {
+      event.preventDefault();
+
+      const patientName = document.getElementById("patientName").value.trim();
+      const medication = document.getElementById("medication").value.trim();
+      const dosage = document.getElementById("dosage").value.trim();
+      const timeInput = document.getElementById("time").value;
+
+      const statusEl = document.getElementById("status");
+
+      if (!patientName || !medication || !dosage || !timeInput) {
+        statusEl.style.color = "red";
+        statusEl.textContent = "Please fill out all fields.";
+        return;
+      }
+
+      const dateObj = new Date(timeInput);
+      const day = `${(dateObj.getMonth() + 1).toString().padStart(2, '0')}/${dateObj.getDate().toString().padStart(2, '0')}/${dateObj.getFullYear()}`;
+      const time = dateObj.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+      try {
+        await addDoc(collection(db, "adherence"), {
+          patient_name: patientName,
+          medication_taken: medication,
+          dosage: dosage,
+          time: time,
+          day: day
+        });
+
+        statusEl.style.color = "green";
+        statusEl.textContent = "Medication submission recorded successfully!";
+        document.getElementById("submissionForm").reset();
+      } catch (error) {
+        console.error("Error adding document: ", error);
+        statusEl.style.color = "red";
+        statusEl.textContent = "Error: " + error.message;
+      }
+    });
+  </script>
 </body>
 </html>
