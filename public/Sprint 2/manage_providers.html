@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Manage Providers</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f4f8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .main {
+            background-color: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 450px;
+        }
+
+        input[type="text"], input[type="email"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0 20px 0;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #678FB4;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #678FB4;
+        }
+
+        ul {
+            padding-left: 0;
+        }
+
+        li {
+            list-style: none;
+            border-bottom: 1px solid #ccc;
+            margin-bottom: 8px;
+            padding-bottom: 6px;
+        }
+    </style>
+    <script>
+        function addProvider() {
+            const name = document.getElementById("providerName").value;
+            const contact = document.getElementById("contact").value;
+
+            if (!name || !contact) {
+                alert("Please fill out all fields.");
+                return;
+            }
+
+            const li = document.createElement("li");
+            li.innerHTML = `<strong>${name}</strong><br>Contact: ${contact} <br><button onclick="this.parentElement.remove()">Remove</button>`;
+            document.getElementById("providerList").appendChild(li);
+
+            document.getElementById("providerName").value = "";
+            document.getElementById("contact").value = "";
+        }
+    </script>
+</head>
+<body>
+    <div class="main">
+        <h2>Manage Providers</h2>
+        <label for="providerName">Provider Name:</label>
+        <input type="text" id="providerName">
+
+        <label for="contact">Contact Email:</label>
+        <input type="email" id="contact">
+
+        <button onclick="addProvider()">Add Provider</button>
+
+        <h3>Provider List:</h3>
+        <ul id="providerList"></ul>
+    </div>
+</body>
+</html>
