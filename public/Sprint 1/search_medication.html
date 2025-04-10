@@ -60,7 +60,7 @@
     <script type = module>
       import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js";
       import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js";
- 
+
       //const firebase = require("firebase/app");
        // require("firebase/firestore");
         
@@ -111,7 +111,7 @@
                 <div>
                   <strong>${med.name}</strong><br>
                   Dosage: ${med.dosage}<br>
-                  Schedule: ${med.schedule}<br><br>
+                  Schedule: ${med.time}<br><br>
                 </div>
               `).join("");
             }
