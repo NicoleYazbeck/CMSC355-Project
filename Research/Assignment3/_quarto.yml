@@ -2,4 +2,6 @@ project:
   type: default
 format: 
   html: 
+    embed-resources: true
+    self-contained-math: true
     toc: true 

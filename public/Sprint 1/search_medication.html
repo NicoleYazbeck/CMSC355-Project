@@ -47,37 +47,81 @@
             margin-top: 20px;
         }
     </style>
-    <script>
-        function searchMedication() {
-            const name = document.getElementById("searchName").value.toLowerCase();
-            fetch("data.json")
-                .then(res => res.json())
-                .then(data => {
-                    const resultsDiv = document.getElementById("results");
-                    resultsDiv.innerHTML = "";
-                    const matched = data.patients["medications"].filter(p =>
-                        p.name.toLowerCase().includes(name)
-                    );
-                    if (matched.length === 0) {
-                        resultsDiv.innerHTML = "<p>No patients found.</p>";
-                    } else {
-                        matched.forEach(p => {
-                            const entry = document.createElement("div");
-                            entry.innerHTML = `<strong>${p.medications.name}</strong><br>Dosage: ${p.medications.dosage}<br>Schedule: ${p.medications.dosage}`;
-                            resultsDiv.appendChild(entry);
-                            resultsDiv.appendChild(document.createElement("hr"));
-                        });
-                    }
-                });
-        }
-    </script>
+  
 </head>
 <body>
     <div class="main">
         <h2>Search Medication</h2>
-        <input type="text" id="searchName" placeholder="Enter medication name">
-        <button onclick="searchMedications()">Search</button>
+        <input type="text" id="searchInput" placeholder="Enter medication name">
+        <button id="searchButton">Search</button>
         <div id="results"></div>
     </div>
+
+    <script type = module>
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js";
+      import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js";
+ 
+      //const firebase = require("firebase/app");
+       // require("firebase/firestore");
+        
+    const firebaseConfig = {
+        apiKey: "AIzaSyB9NTiW0H0Wd0ihUWcWM3nQPNWKQN_uMUQ",
+        authDomain: "cmsc355project2.firebaseapp.com",
+        databaseURL: "https://cmsc355project2-default-rtdb.firebaseio.com",
+        projectId: "cmsc355project2",
+        storageBucket: "cmsc355project2.firebasestorage.app",
+        messagingSenderId: "865264890690",
+        appId: "1:865264890690:web:5d15c22c73adb85fd18edb",
+        measurementId: "G-DGWF7B0EBH"
+    };
+        const app = initializeApp(firebaseConfig);
+        //firebase.initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+
+    
+        async function searchMedications() {
+          const queryText = document.getElementById("searchInput").value.trim().toLowerCase();
+          const resultsDiv = document.getElementById("results");
+          resultsDiv.innerHTML = "Searching...";
+    
+            
+          if (!queryText) {
+                resultsDiv.innerHTML = "Please enter a medication name.";
+          return;
+          }
+
+          try {
+            const colRef = collection(db, "medications");
+            const snapshot = await getDocs(colRef);
+            const matches = [];
+    
+            snapshot.forEach(doc => {
+              const data = doc.data();
+              console.log(data);
+              if (data.name.toLowerCase().includes(queryText)) {
+                matches.push(data);
+              }
+            });
+    
+            if (matches.length == 0) {
+              resultsDiv.innerHTML = "No Medications Found.";
+            } else {
+              resultsDiv.innerHTML = matches.map(med => `
+                <div>
+                  <strong>${med.name}</strong><br>
+                  Dosage: ${med.dosage}<br>
+                  Schedule: ${med.schedule}<br><br>
+                </div>
+              `).join("");
+            }
+          } catch (error) {
+            console.error("Error fetching medications:", error);
+            resultsDiv.innerHTML = "Error occurred while searching.";
+          }
+        }
+        document.getElementById("searchButton").addEventListener("click", searchMedications);
+
+      </script>
 </body>
 </html>

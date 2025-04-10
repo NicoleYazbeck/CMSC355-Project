@@ -1,0 +1,43 @@
+---
+title: AI Applied to Software Refactoring
+date: last-modified
+author: Nicole Yazbeck, Yosi Assefa, Kevin Hwangpo, Kelly Hwangpo, Zerlyne N-Simons
+---
+
+![](aiappliedtocoding.png){width=%50 style="border-radius: 15px; box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2); display: block; margin: auto;"}
+
+## Table of Contents
+
+#### Introduction: Using AI in Software Refactoring
+
+
+
+#### State-of-the-Art Research: AI Tools Applied to Software Refactoring
+
+
+
+#### Important Tools
+
+
+#### Emerging Tools
+
+
+<div class="page-break"></div>
+
+## Report
+
+## Introduction: Using AI in Software Refactoring
+
+## State-of-the-Art Research: AI Tools Applied to Software Refactoring
+
+<div class="page-break"></div>
+
+## Important Tools
+
+## Emerging Tools
+
+<div class="page-break"></div>
+
+## Sources
+
+

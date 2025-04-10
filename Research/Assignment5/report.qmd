@@ -1,0 +1,40 @@
+---
+title: AI Applied to Testing and Planning
+date: last-modified
+author: Nicole Yazbeck, Yosi Assefa, Kevin Hwangpo, Kelly Hwangpo, Zerlyne N-Simons
+---
+
+![](aiappliedtocoding.png){width=%50 style="border-radius: 15px; box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2); display: block; margin: auto;"}
+
+## Table of Contents
+
+#### Introduction: Using AI in Testing and Planning
+
+
+#### State-of-the-Art Research: AI Tools Applied to Testing and Planning
+
+
+#### Important Tools
+
+
+#### Emerging Tools
+
+
+<div class="page-break"></div>
+
+## Introduction: Using AI in Coding
+
+## State-of-the-Art Research: AI Tools Applied to Testing and Planning
+
+<div class="page-break"></div>
+
+## Important Tools
+
+## Emerging Tools
+
+<div class="page-break"></div>
+
+## Sources
+
+
+
