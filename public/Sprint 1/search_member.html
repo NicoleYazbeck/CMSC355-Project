@@ -47,14 +47,79 @@
             margin-top: 20px;
         }
     </style>
-<script src="search_patient.js"></script> 
 </head>
 <body>
     <div class="main">
-        <h2>Search Patients</h2>
-        <input type="text" id="searchName" placeholder="Enter patient name">
-        <button onclick="searchPatient()">Search</button>
+        <h2>Search Patient</h2>
+        <input type="text" id="searchInput" placeholder="Enter medication name">
+        <button id="searchButton">Search</button>
         <div id="results"></div>
     </div>
+
+    <script type = module>
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js";
+      import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js";
+
+        
+    const firebaseConfig = {
+        apiKey: "AIzaSyB9NTiW0H0Wd0ihUWcWM3nQPNWKQN_uMUQ",
+        authDomain: "cmsc355project2.firebaseapp.com",
+        databaseURL: "https://cmsc355project2-default-rtdb.firebaseio.com",
+        projectId: "cmsc355project2",
+        storageBucket: "cmsc355project2.firebasestorage.app",
+        messagingSenderId: "865264890690",
+        appId: "1:865264890690:web:5d15c22c73adb85fd18edb",
+        measurementId: "G-DGWF7B0EBH"
+    };
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+
+    
+        async function searchPatients() {
+          const queryText = document.getElementById("searchInput").value.trim().toLowerCase();
+          const resultsDiv = document.getElementById("results");
+          resultsDiv.innerHTML = "Searching...";
+    
+            
+          if (!queryText) {
+                resultsDiv.innerHTML = "Please enter a patient name.";
+          return;
+          }
+
+          try {
+            const colRef = collection(db, "users");
+            const snapshot = await getDocs(colRef);
+            const matches = [];
+    
+            snapshot.forEach(doc => {
+              const data = doc.data();
+              console.log(data);
+              if (data.name.toLowerCase().includes(queryText)) {
+                matches.push(data);
+              }
+            });
+    
+            if (matches.length == 0) {
+              resultsDiv.innerHTML = "No Patients Found.";
+            } else {
+              resultsDiv.innerHTML = matches.map(patient => `
+                <div>
+                  <strong>${patient.name}</strong><br>
+                  Age: ${patient.age}<br>
+                  Date of Birth: ${patient.dob}<br>
+                  Medications: ${patient.medications}<br>
+                  Contact: ${patient.email}<br><br>
+                </div>
+              `).join("");
+            }
+          } catch (error) {
+            console.error("Error fetching patients:", error);
+            resultsDiv.innerHTML = "Error occurred while searching.";
+          }
+        }
+        document.getElementById("searchButton").addEventListener("click", searchPatients);
+
+      </script>
 </body>
 </html>
