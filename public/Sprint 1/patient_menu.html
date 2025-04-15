@@ -10,6 +10,11 @@
 
             
 </div>
+<body>
+<div class="info-bar">
+  <span id="current-date">Loading date...</span>
+  <span id="location">Location: Richmond, VA</span>
+</div>
 
 <section>
   <nav>
@@ -21,21 +26,32 @@
       <li><a href='index.html' data-item='Log Out'>Log Out</a></li>
     </ul>
   </nav>
-
 </section>
 
-  <section>
-    <h2> Current Medications</h2>
+<section class="content">
+  <h1>Welcome, Patient!</h1>
 
-    <br>
-    <h2>Your Current Adherance Report</h2>
+  <h2>Your Current Medications</h2>
+  <p>Check your active prescriptions and treatment plan.</p>
+  <br />
 
-    <br>
-    <h2>Your Provider Informtaion </h2>
+  <h2>Adherence Report</h2>
+  <p>View your medication adherence submissions and progress.</p>
+  <br />
 
-    <br>
-  </section>
+  <h2>Browse Providers</h2>
+  <p>Find healthcare providers near you or get connected to specialists.</p>
+</section>
 
-<footer><div></div></footer>
+<footer>
+  &copy; 2025 TrackYourHealth
+</footer>
 
+<script>
+  const dateEl = document.getElementById("current-date");
+  const today = new Date();
+  const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+  dateEl.textContent = "Today is: " + today.toLocaleDateString(undefined, options);
+</script>
+</body>
 </html>

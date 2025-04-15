@@ -11,40 +11,48 @@
             
 </div>
 
+<body>
+  <!-- Info bar for date and location -->
+  <div class="info-bar">
+    <span id="current-date">Loading date...</span>
+    <span id="location">Location: Richmond, VA</span>
+  </div>
 
-<section>
+  <!-- Navigation Menu -->
   <nav>
     <ul class="menuItems">
-      <li><a href='view_reports.html' data-item='View Adherance Reports'>View Adherance Reports</a></li>
-      <li><a href='search_medication.html' data-item='Search Medications'>Search Medications</a></li>
-      <li><a href='search_member.html' data-item='Search Patients'>Search Patients</a></li>
-      <li><a href='../Sprint%202/manage_providers.html' data-item='Manage Account'>Manage Account</a></li>
-      <li><a href='index.html' data-item='Log Out'>Log Out</a></li>
+      <li><a href="view_reports.html">View Adherence Reports</a></li>
+      <li><a href="search_medication.html">Search Medications</a></li>
+      <li><a href="search_member.html">Search Patients</a></li>
+      <li><a href="../Sprint%202/manage_providers.html">Manage Account</a></li>
+      <li><a href="index.html">Log Out</a></li>
     </ul>
   </nav>
+  <br>
+  <!-- Content Section -->
+  <section class="content">
+    <h1>Welcome, Provider!</h1>
 
-</section>
-
-  <section>
-    <h2> Current Patients</h2>
-            <script>
-        function fetchJSONData() {
-            fetch('./data.json')
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error(`HTTP error! Status: ${response.status}`);
-                    }
-                    return response.json();  
-                })
-                .then(data => console.log(data))  
-                .catch(error => console.error('Failed to fetch data:', error)); 
-        }
-        fetchJSONData();  
-    </script>
-    <br>
-
+    <h2>👥 Current Patients</h2>
+    <div id="patientsContainer">
+      <p>View your patients and patient data.</p>
+    </div>
   </section>
 
-<footer><div></div></footer>
+  <!-- Footer -->
+  <footer>
+    &copy; 2025 TrackYourHealth
+  </footer>
+
+  <script>
+    
+    const dateEl = document.getElementById("current-date");
+    const today = new Date();
+    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+    dateEl.textContent = "Today is: " + today.toLocaleDateString(undefined, options);
+    
+ 
+  </script>
+</body>
 
 </html>
