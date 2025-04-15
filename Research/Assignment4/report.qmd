@@ -4,23 +4,26 @@ date: last-modified
 author: Nicole Yazbeck, Yosi Assefa, Kevin Hwangpo, Kelly Hwangpo, Zerlyne N-Simons
 ---
 
-![](aiappliedtocoding.png){width=%50 style="border-radius: 15px; box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2); display: block; margin: auto;"}
+![](image.jpg){width=%50 style="border-radius: 15px; box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2); display: block; margin: auto;"}
+
 
 ## Table of Contents
 
 #### Introduction: Using AI in Software Refactoring
 
-
+Provides an overview of how artificial intelligence is transforming the process of software refactoring, with a focus on improving code quality, performance, and developer productivity.
 
 #### State-of-the-Art Research: AI Tools Applied to Software Refactoring
 
-
+Covers cutting-edge research and advancements in AI-driven tools, including multi-agent systems and large language models that assist or automate various aspects of software development.
 
 #### Important Tools
 
+Highlights well-established AI-powered tools like OpenRefactory’s CodeAssist, Facebook’s Aroma, and Refact AI, discussing their capabilities, strengths, and limitations.
 
 #### Emerging Tools
 
+Explores newer tools and experimental frameworks such as GitHub Copilot, Amazon CodeWhisperer, ChatDev, and SWE-agent that showcase the growing role of AI in collaborative and autonomous software development.
 
 <div class="page-break"></div>
 
@@ -28,16 +31,47 @@ author: Nicole Yazbeck, Yosi Assefa, Kevin Hwangpo, Kelly Hwangpo, Zerlyne N-Sim
 
 ## Introduction: Using AI in Software Refactoring
 
+Software refactoring is the process of improving the internal functionality without it affecting the external behavior. The main goal of refactoring is to enhance the readability, maintainability, and performance of software. AI tools can help to analyze code and find areas needed for refactoring along with helping to generate tests all without reducing the chances of breaking existing functionalities. AI applied to software refactoring helps save time and allow developers to focus on higher level tasks.
+
 ## State-of-the-Art Research: AI Tools Applied to Software Refactoring
+
+State-of-the-art AI research tools are transforming software refactoring by automating code analysis, suggestion generation, and even lifecycle management. Tools like GitHub Copilot and Amazon CodeWhisperer use large language models to provide intelligent code completions and real-time recommendations based on context, significantly accelerating the development process and reducing human error (GitHub, n.d.; Amazon Web Services, n.d.). Copilot supports a wide range of programming languages and integrates seamlessly with popular IDEs, while CodeWhisperer is particularly optimized for secure coding within AWS environments. On the cutting edge of research, ChatDev and SWE-agent simulate collaborative multi-agent software development environments, where AI agents take on specialized roles such as developers, testers, and architects to autonomously manage end-to-end software projects (ChatDev, n.d.). These tools demonstrate the growing potential of AI not just as a coding assistant, but as a full-scale collaborator in software engineering.
 
 <div class="page-break"></div>
 
 ## Important Tools
 
+AI-powered software refactoring tools are revolutionizing how developers improve code quality and maintainability. One standout is OpenRefactory's CodeAssist, which excels at detecting and automatically fixing bugs and security vulnerabilities, making it especially valuable for enterprise-level projects. Its ability to integrate with CI/CD pipelines and scale across large codebases is a major strength. However, it’s limited primarily to Java and may generate false positives, requiring developer oversight. It's also priced for enterprise use, which might not suit smaller teams.
+
+<div class="page-break"></div>
+
+On the other hand, Facebook’s Aroma serves more as a recommendation engine than a direct refactoring tool. It helps developers discover common patterns by suggesting similar code snippets from large codebases. This makes it ideal for learning and consistent coding practices, but it lacks the ability to apply changes automatically and depends heavily on the quality of its training data. Lastly, Refact AI leverages large language models (LLMs) to generate and refactor code based on natural language prompts. It supports multiple languages and integrates into popular IDEs, offering flexibility and ease of use. Still, it lacks deep contextual understanding of larger projects and often requires manual review to ensure correctness. Each tool has distinct advantages depending on the use case, ranging from enterprise automation to developer productivity and learning.
+
+
 ## Emerging Tools
+
+There are various emerging tools for AI applied to software refactoring which all help automate, optimize, and modernize codebases. Some of these tools include CodeWhisperer (AWS) which is a general purpose, ML/AI-powered code generator that provides you with code recommendations in real time. It provides real-time code suggestions to developers by automatically generating suggestions based on your existing code and comments; the recommendations can vary in size and scope as well. This tool is used to enhance productivity and reduce the time spent on routine coding tasks. GitHub Copilot is an AI-powered code completion tool. It assists programmers by analyzing the context of code that has already been written and suggests entire lines or blocks of code as they type. It supports numerous programming languages, compatible with many popular IDEs (VSCode, JetBrains suite, etc), and allows developers to choose from various AI models (Anthropic, Google, OpenAI). ChatDev and SWE-agent are research projects focused on simulating a virtual software company that operates through intelligent agents holding different roles (CEO, CTO, programmer, etc). The agents collaborate to autonomously develop software apps by participating in specialized functional seminars, including tasks such as designing, coding, testing, and documenting. The agents should be capable of autonomously handling the entire software development lifecycle, from requirement analysis to design, coding, testing, and deployment. They also offer a customizable framework for specific project needs.
 
 <div class="page-break"></div>
 
 ## Sources
 
+Amazon Web Services. (n.d.). What is Amazon CodeWhisperer? Amazon CodeWhisperer User Guide. https://docs.aws.amazon.com/codewhisperer/latest/userguide/whisper-legacy.html
 
+ChatDev. (n.d.). ChatDev: Multi-agent collaborative software development. https://chatdev.ai/
+
+GitHub. (n.d.). GitHub Copilot. https://github.com/features/copilot
+
+Häuptle, K. (2025, February 23). The value and limitations of ai for large scale refactoring. The Value and Limitations of AI for Large Scale Refactoring. https://ecosystem4engineering.substack.com/p/the-value-of-ai-for-large-scale-refactoring 
+
+Naik, S. (2024, October 10). The Pros and cons of using LLMS and AI tools for code generation and refactoring. LinkedIn. https://www.linkedin.com/pulse/pros-cons-using-llms-ai-tools-code-generation-refactoring-shatru-naik-emvcc/ 
+
+Amazon Web Services. (n.d.). What is Amazon CodeWhisperer?https://docs.aws.amazon.com/codewhisperer/latest/userguide/whisper-legacy.html
+GitHub. (n.d.). GitHub Copilot. https://github.com/features/copilot
+
+ChatDev. (n.d.). ChatDev: Multi-agent collaborative software development. https://chatdev.ai/
+
+Barnaby, C., Luan, F., & Chandra, S. (2020, March 23). Aroma: Using machine learning for code recommendation. Engineering at Meta. https://engineering.fb.com/2019/04/12/developer-tools/aroma/
+
+AI coding agent for software development. Refact.ai AI Coding Assistant | Fine-tuned, Secure, and Open-source. (n.d.). https://refact.ai/
+Technology. OpenRefactory. (n.d.). https://www.openrefactory.com/technology/
