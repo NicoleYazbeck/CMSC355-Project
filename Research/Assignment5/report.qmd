@@ -4,37 +4,73 @@ date: last-modified
 author: Nicole Yazbeck, Yosi Assefa, Kevin Hwangpo, Kelly Hwangpo, Zerlyne N-Simons
 ---
 
-![](aiappliedtocoding.png){width=%50 style="border-radius: 15px; box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2); display: block; margin: auto;"}
+![](aiappliedtosoftwaretesting.jpg){width=100% style="border-radius: 15px; box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2); display: block; margin: auto;"}
 
 ## Table of Contents
 
 #### Introduction: Using AI in Testing and Planning
 
+> This section introduces the growing role of AI in software testing and planning, emphasizing how it can enhance code quality, detect bugs faster, and improve development efficiency.
 
 #### State-of-the-Art Research: AI Tools Applied to Testing and Planning
 
+> Reviews cutting-edge AI research tools such as DiffTGen, DeepMutation, ChatDev, and GEMBA, showcasing how they automate and improve     testing, bug detection, and software planning.
 
 #### Important Tools
 
+> Highlights established AI-powered tools like GitHub Copilot, Testim, and Jira Software, discussing their strengths in automating coding, testing, and planning, along with their limitations that still require human oversight.
 
 #### Emerging Tools
 
+> Focuses on newer AI tools like Mabl, Asana Intelligence, and Monday, which are enhancing testing and planning with smart automation, predictive insights, and workload optimization.
 
 <div class="page-break"></div>
 
 ## Introduction: Using AI in Coding
 
+Artificial intelligence is applied in many aspects of computer science. Popularly, in software engineering, artificial intelligence is used to verify, quick fix, and review bugs in code. Using AI in software testing and planning is beneficial because it can detect and fix defects quickly, without needing human intervention. When programmed to fix these bugs automatically, working with AI can perfect a code, making it as efficient as it possibly can be. Using AI in software testing creates more quality and reliability of the code necessary to function a program. Especially as many software systems are growing and advancing, this is an effective way to save time while perfecting the necessary software. As software programming continues to reshape and advance, we can use AI as a beneficial tool to help us navigate to a successful software development for both the present and future.
+
 ## State-of-the-Art Research: AI Tools Applied to Testing and Planning
+
+State-of-the-art research AI tools are purposeful for software testing to automate, optimize, and enhance the software testing process. They do this by generating test cases, predicting bugs, reducing manual effort, etc. They’re important for software planning to support or automate project planning, design decision-making, team coordination and more by using AI agents or LLMs. Some of the tools include DiffTGen (Differential Testing Generator) which generates test inputs to identify overfitted patches that uncover semantic differences between an original faulty program and a patched program. DeepMutation enhances mutation testing by leveraging deep learning to prioritize or generate meaningful mutants while focusing on real-world faults. ChatDev models software engineering as a multi-agent conversation; handling end-to-end software design, implementation, and testing via road-based AI agents. Another tool is GEMBA which is an AI-driven software planning and design tool that focuses on enterprise code planning, micro service design, and DevOps workflow integration. These tools are all useful in saving developer time, reducing bugs in production, making software development accessible to non-experts, etc.
 
 <div class="page-break"></div>
 
 ## Important Tools
 
+Artificial intelligence is transforming software development. One specific area is testing and planning. One notable tool is GitHub Copilot which assists developers by generating code and suggesting test cases based on natural language prompts. Its main strength lies in accelerating development and test writing which leads to increased productivity for developers. However, Copilot can sometimes produce syntactically correct but logically flawed or insecure code. This highlights the need for close human review to ensure the quality of the test cases given. Another powerful AI-driven tool is Testim, which automates UI testing and uses machine learning to adapt test scripts when the user interface changes. Testim's self-healing capabilities reduce test maintenance efforts which makes it the ideal solution for AI-powered testing when doing agile development. Its downside, however, is that it may not handle complex logic or deep integrations effectively, which can require manual scripting or oversight.
+
+For software planning, Jira Software has integrated AI-powered features such as predictive backlog prioritization and sprint forecasting. This allows teams to streamline workflows based on historical data. This improves project visibility and helps teams plan more efficiently by reducing the time spent on manual estimations. However, Jira’s AI models cannot accurately account for team-specific contexts, interpersonal dynamics, or rapidly changing requirements. This can severely limit the model's predictive accuracy in more specific scenarios. While these tools mark significant progress in automating development tasks and project planning, their effectiveness still hinges on human expertise to validate, guide, and fine-tune the AI-generated suggestions.
+
+
 ## Emerging Tools
+
+In software development, artificial intelligence is greatly changing the way people test and plan, especially with the emergence of highly intelligent tools that enhance efficiency and accuracy. For testing, tools such as Testim and Mabl leverage artificial intelligence to generate and maintain test cases. These platforms tend to use machine learning and natural language processing to automate testing. For project planning, AI tools such as Asana Intelligence and Monday help to predict delays and find prioritized tasks to best optimize workloads for teams. These emerging tools integrate smart features that enable more informed decision making for testing and planning within the software space. As artificial intelligence continues to improve, the integration of these emerging tools will allow for higher quality outcomes with less manual effort.
 
 <div class="page-break"></div>
 
 ## Sources
 
+GEMBA. (n.d.). Gemba: AI Copilot for Engineering Leaders. https://getgemba.ai/
+
+Rebelo, M. (2024, November 14). The 4 best AI project management tools in 2025. https://zapier.com/blog/best-ai-project-management-tools/ 
+
+Petrovska, N. (2023, December 21). AI and software testing: Pros, cons and future trends. TestDevLab. https://www.testdevlab.com/blog/ai-and-software-testing-pros-cons-and-future-trends 
+
+Shuai, Y., Zhao, K., & Wang, T. (2021). DeepMutation: Mutation Testing with Deep Learning. arXiv. https://arxiv.org/abs/2103.00123
+
+Xiong, Y., Dang, Y., Zhang, L., Zhao, D., & Zhang, L. (2016). Automatic Test Generation to Detect Patches That Cause Behavioral Changes. ICSE 2016. https://pmc.ncbi.nlm.nih.gov/articles/PMC11269383/
+
+Zhang, Y., Zhang, Q., Zhao, W., et al. (2023). ChatDev: Revolutionizing Software Development with AI Agents. arXiv. https://arxiv.org/abs/2308.07925 
+
+GitHub. (2023). GitHub Copilot documentation. Retrieved from                   https://docs.github.com/en/copilot
+
+Ziegler, A. (2023). The limitations of AI code generation. Towards Data Science.
+
+Testim. (2024). AI-based test automation. Retrieved from https://www.testim.io
+
+Atlassian. (2024). Jira Software with AI features. Retrieved from https://www.atlassian.com/software/jira
+
+TechTarget. (2023). AI in agile project management tools.
 
 
