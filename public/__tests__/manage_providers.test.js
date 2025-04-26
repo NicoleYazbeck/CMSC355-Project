@@ -2,7 +2,7 @@
  * @jest-environment jsdom
  */
 
-const { displayProviderResults } = require("./manage_providers.js");
+const { displayProviderResults } = require("./manage_provider.js");
 
 describe("displayProviderResults (manageProviders)", () => {
     beforeEach(() => {

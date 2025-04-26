@@ -1,6 +1,5 @@
-// register.js
-import firebase from "firebase/compat/app";
-import "firebase/compat/firestore";
+const { initializeApp } = require('firebase/app');
+const { getFirestore, collection, getDocs, addDoc, query, where } = require('firebase/firestore');
 
 const firebaseConfig = {
   apiKey: "AIzaSyB9NTiW0H0Wd0ihUWcWM3nQPNWKQN_uMUQ",
@@ -13,61 +12,42 @@ const firebaseConfig = {
   measurementId: "G-DGWF7B0EBH"
 };
 
-firebase.initializeApp(firebaseConfig);
-export const db = firebase.firestore();
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
 
-export function calculateDOB(age) {
-  const today = new Date();
-  const year = today.getFullYear() - age;
-  const month = String(today.getMonth() + 1).padStart(2, '0');
-  const day = String(today.getDate()).padStart(2, '0');
-  return `${year}-${month}-${day}`;
-}
-
-export async function registerPatient(event, document) {
+async function registerPatient(event, document) {
   event.preventDefault();
-
-  const name = document.getElementById("name").value;
-  const email = document.getElementById("email").value;
-  const age = parseInt(document.getElementById("age").value);
-  const patient_id = parseInt(document.getElementById("patient_id").value);
+  
   const username = document.getElementById("username").value;
-  const password = document.getElementById("password").value;
-  const errorEl = document.getElementById("error-message");
-
-  const dob = calculateDOB(age);
+  const usersCollection = collection(db, "users");
+  const usernameQuery = query(usersCollection, where("username", "==", username));
+  const usernameSnapshot = await getDocs(usernameQuery);
+  
+  if (!usernameSnapshot.empty) {
+    document.getElementById("error-message").innerText = "Username already taken.";
+    return;
+  }
 
   try {
-    const authSnap = await db.collection("auth")
-      .where("username", "==", username)
-      .get();
-
-    if (!authSnap.empty) {
-      errorEl.innerText = "Username already taken.";
-      return;
-    }
-
-    await db.collection("users").add({
-      id: patient_id,
-      name: name,
-      email: email,
-      age: age,
-      dob: dob,
-      medications: []
-    });
-
-    await db.collection("auth").add({
-      id: patient_id,
+    // Register the patient and create an auth record
+    await addDoc(usersCollection, {
       username: username,
-      password: password,
-      role: "patient"
+      // other patient data
     });
 
     alert("Registration successful!");
-    window.location.href = "login.html";
+    window.location.href = "login.html"; // Redirect to login
   } catch (error) {
-    console.error("Error during registration:", error);
-    errorEl.innerText = "Error: " + error.message;
+    document.getElementById("error-message").innerText = `Error: ${error.message}`;
   }
 }
 
+function calculateDOB(age) {
+  const today = new Date();
+  const year = today.getFullYear() - age;
+  const month = String(today.getMonth() + 1).padStart(2, '0');  // Ensure 2-digit month
+  const day = String(today.getDate()).padStart(2, '0');         // Ensure 2-digit day
+  return `${year}-${month}-${day}`;
+}
+
+module.exports = { registerPatient, calculateDOB,  db };

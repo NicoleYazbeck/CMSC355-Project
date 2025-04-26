@@ -2,7 +2,7 @@
  * @jest-environment jsdom
  */
 
-const { displayPatientManagementResults } = require("./manage_patients.js");
+const { displayPatientManagementResults } = require("./patientmanager.js");
 
 describe("displayPatientManagementResults (managePatients)", () => {
     beforeEach(() => {

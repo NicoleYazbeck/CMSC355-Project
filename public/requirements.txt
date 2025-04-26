@@ -1,0 +1,11 @@
+# 1. Firebase (for Firestore database)
+npm install firebase
+
+# 2. Jest (for running tests)
+npm install --save-dev jest
+
+# 3. Testing Library (to simulate user actions and DOM events)
+npm install --save-dev @testing-library/dom @testing-library/user-event
+
+# 4. Node modules support (optional step depending on your Node version)
+npm install

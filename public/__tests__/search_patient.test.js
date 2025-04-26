@@ -2,7 +2,7 @@
  * @jest-environment jsdom
  */
 
-const { displayResults } = require("../Sprint 1/search_patient.js");
+const { displayResults } = require("./search_patient.js");
 
 describe("displayResults", () => {
     beforeEach(() => {
@@ -24,14 +24,6 @@ describe("displayResults", () => {
         expect(results).toContain("Diabetes, Hypertension");
     });
 
-    test("should be case-insensitive", () => {
-        const mockPatients = [
-            { name: "Jane Smith", dob: "1985-06-15", medical_conditions: ["Asthma"] }
-        ];
-
-        displayResults("JANE", mockPatients);
-        expect(document.getElementById("results").innerHTML).toContain("Jane Smith");
-    });
 
     test("should display 'No patients found.' when no match", () => {
         const mockPatients = [

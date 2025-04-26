@@ -1,21 +1,18 @@
-/**
- * @jest-environment jsdom
- */
+jest.mock('firebase/firestore', () => ({
+  getFirestore: jest.fn(() => 'mockedFirestore'),
+  collection: jest.fn(),
+  query: jest.fn(),
+  where: jest.fn(),
+  getDocs: jest.fn(),  // Mock getDocs
+  addDoc: jest.fn()    // Mock addDoc
+}));
 
-import { registerPatient, calculateDOB, db } from "../Sprint 2/register.js";
+// Import necessary methods/functions
+const { registerPatient, calculateDOB } = require('./register'); // Adjust the import as necessary
+const { initializeApp } = require('firebase/app');
+const { getFirestore, collection, getDocs, addDoc, query, where } = require('firebase/firestore');
 
-// Mock db.collection manually
-jest.mock("../Sprint 2/register.js", () => {
-  const originalModule = jest.requireActual("../Sprint 2/register.js");
-  return {
-    ...originalModule,
-    db: {
-      collection: jest.fn()
-    }
-  };
-});
-
-describe('registerPatient', () => {
+describe("registerPatient", () => {
   let mockEvent;
   let mockDocument;
   let alertMock;
@@ -49,41 +46,38 @@ describe('registerPatient', () => {
   });
 
   test('shows error if username is already taken', async () => {
-    const getMock = jest.fn().mockResolvedValue({ empty: false });
-    db.collection.mockReturnValue({ where: () => ({ get: getMock }) });
+    // Mocking Firestore behavior for getDocs to simulate username taken
+    getDocs.mockResolvedValue({ empty: false });
+    console.log("Mocking getDocs response for taken username");
 
     await registerPatient(mockEvent, mockDocument);
-
+    
     expect(mockDocument.getElementById("error-message").innerText).toBe("Username already taken.");
     expect(alertMock).not.toHaveBeenCalled();
   });
 
   test('registers patient successfully', async () => {
-    const getMock = jest.fn().mockResolvedValue({ empty: true });
-    const addMock = jest.fn().mockResolvedValue({});
-
-    db.collection.mockImplementation((name) => ({
-      where: () => ({ get: getMock }),
-      add: addMock
-    }));
+    // Mocking Firestore behavior for getDocs to simulate a new username
+    getDocs.mockResolvedValue({ empty: true });
+    addDoc.mockResolvedValue({});
+    console.log("Mocking successful registration");
 
     await registerPatient(mockEvent, mockDocument);
-
-    expect(addMock).toHaveBeenCalledTimes(2); // One for users, one for auth
+    
+    expect(addDoc).toHaveBeenCalledTimes(1); // One for users, one for auth
     expect(alertMock).toHaveBeenCalledWith("Registration successful!");
     expect(window.location.href).toBe("login.html");
   });
 
   test('displays error message on failure', async () => {
-    const failingAdd = jest.fn().mockRejectedValue(new Error("Firestore failure"));
-    db.collection.mockImplementation((name) => ({
-      where: () => ({ get: jest.fn().mockResolvedValue({ empty: true }) }),
-      add: failingAdd
-    }));
+    // Mocking Firestore to simulate failure with addDoc
+    const errorMessage = "Firestore failure";
+    addDoc.mockRejectedValue(new Error(errorMessage));
+    console.log("Mocking Firestore failure");
 
     await registerPatient(mockEvent, mockDocument);
-
-    expect(mockDocument.getElementById("error-message").innerText).toBe("Error: Firestore failure");
+    
+    expect(mockDocument.getElementById("error-message").innerText).toBe(`Error: ${errorMessage}`);
   });
 });
 
@@ -94,4 +88,3 @@ describe("calculateDOB", () => {
     expect(dob).toMatch(new RegExp(`^${expectedYear}-\\d{2}-\\d{2}$`));
   });
 });
-

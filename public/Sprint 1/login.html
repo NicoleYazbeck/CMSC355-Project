@@ -45,8 +45,8 @@
       
               window.location.href =
                 userData.role === "patient"
-                  ? "patient_menu.html"
-                  : "provider_menu.html";
+                  ? "../Sprint%203/patient_menu.html"
+                  : "../Sprint%203/provider_menu.html";
             } else {
               document.getElementById("error-message").innerText =
                 "Invalid username or password.";
@@ -59,7 +59,7 @@
         }
       
         // Attach the login function to the button
-        document.querySelector("button[onclick='login()']").addEventListener("click", login);
+        document.querySelector("button").addEventListener("click", login);
       </script>
 </head>
 <body>
@@ -81,9 +81,8 @@
                 placeholder="Enter your Password" required>
 
             <div class="wrap">
-                <button type="button" onclick="login()">
-                    Submit
-                </button>
+              <button type="button">Login</button>
+
                 <p id="error-message" style="color: red;"></p>
             </div>
         </form>
