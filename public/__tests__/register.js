@@ -1,3 +1,4 @@
+// register.js
 import firebase from "firebase/compat/app";
 import "firebase/compat/firestore";
 
@@ -69,3 +70,4 @@ export async function registerPatient(event, document) {
     errorEl.innerText = "Error: " + error.message;
   }
 }
+
