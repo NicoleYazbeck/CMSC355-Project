@@ -1,32 +1,52 @@
-//For testing using Jest
+// Mock Firebase Authentication methods
+jest.mock('firebase/auth', () => ({
+  getAuth: jest.fn(),
+  signInWithEmailAndPassword: jest.fn()
+}));
 
-async function login() {
-    
-    const username = document.getElementById("username").value;
-    const password = document.getElementById("password").value;
+jest.mock('firebase/app', () => ({
+  initializeApp: jest.fn()
+}));
 
-    try {
-        const response = await fetch("./data.json");
-        const data = await response.json();
-        checkIfUserExists(username, password, data);
-    } catch (error) {
-        console.error("Error loading user data:", error);
-        document.getElementById("error-message").innerText = "Error loading user data.";
-    }
-}
+// Setup DOM
+document.body.innerHTML = `
+  <form id="login-form">
+    <input id="login-email" />
+    <input id="login-password" />
+    <button type="submit">Login</button>
+  </form>
+`;
 
-function checkIfUserExists(username, password, data) {
-    const user = data.auth.users.find(u => u.username === username && u.password === password);
+const { signInWithEmailAndPassword } = require('firebase/auth');
+const { initializeApp } = require('firebase/app');
 
-    if (user) {
-        alert("Login successful! Redirecting...");
-        window.location.href = user.role === "patient" ? "patient_menu.html" : "provider_menu.html";
-    } else {
-        document.getElementById("error-message").innerText = "Invalid username or password.";
-        
-    }
-}
+const { loginUser } = require('./login.js'); // Your login function
 
+describe('loginUser', () => {
+  beforeEach(() => {
+    signInWithEmailAndPassword.mockClear();
+    initializeApp.mockClear();
+  });
 
-module.exports = { login, checkIfUserExists };
+  test('logs in an existing user successfully', async () => {
+    signInWithEmailAndPassword.mockResolvedValue({ user: { uid: '12345' } });
 
+    // Trigger login function
+    await loginUser('test@example.com', 'TestPassword123');
+
+    expect(signInWithEmailAndPassword).toHaveBeenCalledWith(
+      expect.any(Object),
+      'test@example.com',
+      'TestPassword123'
+    );
+  });
+
+  test('handles login errors gracefully', async () => {
+    signInWithEmailAndPassword.mockRejectedValue(new Error('Login failed'));
+
+    // Trigger login function
+    await loginUser('test@example.com', 'TestPassword123');
+
+    expect(signInWithEmailAndPassword).toHaveBeenCalled();
+  });
+});
