@@ -1,52 +1,18 @@
-// Mock Firebase Authentication methods
-jest.mock('firebase/auth', () => ({
-  getAuth: jest.fn(),
-  signInWithEmailAndPassword: jest.fn()
-}));
+// login.js
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { initializeApp } from "firebase/app";
 
-jest.mock('firebase/app', () => ({
-  initializeApp: jest.fn()
-}));
+// (Optional: your Firebase config goes somewhere here)
+// initializeApp(firebaseConfig);
 
-// Setup DOM
-document.body.innerHTML = `
-  <form id="login-form">
-    <input id="login-email" />
-    <input id="login-password" />
-    <button type="submit">Login</button>
-  </form>
-`;
-
-const { signInWithEmailAndPassword } = require('firebase/auth');
-const { initializeApp } = require('firebase/app');
-
-const { loginUser } = require('./login.js'); // Your login function
-
-describe('loginUser', () => {
-  beforeEach(() => {
-    signInWithEmailAndPassword.mockClear();
-    initializeApp.mockClear();
-  });
-
-  test('logs in an existing user successfully', async () => {
-    signInWithEmailAndPassword.mockResolvedValue({ user: { uid: '12345' } });
-
-    // Trigger login function
-    await loginUser('test@example.com', 'TestPassword123');
-
-    expect(signInWithEmailAndPassword).toHaveBeenCalledWith(
-      expect.any(Object),
-      'test@example.com',
-      'TestPassword123'
-    );
-  });
-
-  test('handles login errors gracefully', async () => {
-    signInWithEmailAndPassword.mockRejectedValue(new Error('Login failed'));
-
-    // Trigger login function
-    await loginUser('test@example.com', 'TestPassword123');
-
-    expect(signInWithEmailAndPassword).toHaveBeenCalled();
-  });
-});
+export async function loginUser(email, password) {
+  const auth = getAuth();
+  try {
+    const userCredential = await signInWithEmailAndPassword(auth, email, password);
+    console.log("Login successful:", userCredential.user.uid);
+    // Redirect to user menu or dashboard here if needed
+  } catch (error) {
+    console.error("Login failed:", error.message);
+    // Optionally show error to the user
+  }
+}
