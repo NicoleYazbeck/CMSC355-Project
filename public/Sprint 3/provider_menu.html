@@ -1,58 +1,255 @@
 <!DOCTYPE html>
-<html>
-<div>
-    <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="menu.css">
-    <title>Main Menu</title>
-    </head>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Provider Dashboard</title>
 
-            
-</div>
+  <style>
+    /* Full CSS inside for simplicity */
+    
+    /* Reset & General */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      display: flex;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      height: 100vh;
+      background-color: #f5f8fc;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      width: 240px;
+      background-color: #0077cc;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      padding: 20px;
+    }
+
+    .logo {
+      font-size: 22px;
+      font-weight: bold;
+      margin-bottom: 40px;
+    }
+
+    .nav-menu {
+      list-style: none;
+    }
+
+    .nav-menu li {
+      margin-bottom: 20px;
+    }
+
+    .nav-menu a {
+      text-decoration: none;
+      color: white;
+      font-size: 16px;
+      display: block;
+      padding: 10px;
+      border-radius: 6px;
+      transition: background 0.3s;
+    }
+
+    .nav-menu a:hover {
+      background-color: #005fa3;
+    }
+
+    .logout {
+      margin-top: auto;
+      background-color: #cc4b4b;
+    }
+
+    .logout:hover {
+      background-color: #a83232;
+    }
+
+    /* Main Content */
+    .main-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .header {
+      background-color: #ffffff;
+      padding: 20px;
+      font-size: 14px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #e0e6ed;
+    }
+
+    /* Date Pill Badge */
+    .date-badge {
+      background-color: white;
+      padding: 8px 15px;
+      border-radius: 20px;
+      font-size: 14px;
+      color: #1c3d5a;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+      display: inline-block;
+    }
+
+    /* Welcome Section */
+    .welcome {
+      padding: 30px 40px;
+      background-color: #ffffff;
+      border-bottom: 1px solid #e0e6ed;
+    }
+
+    .welcome h1 {
+      font-size: 28px;
+      color: #1c3d5a;
+    }
+
+    /* Dashboard Cards */
+    .dashboard {
+      padding: 30px 40px;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background-color: #ffffff;
+      border: 1px solid #d9e2ec;
+      border-radius: 10px;
+      padding: 20px;
+      transition: box-shadow 0.3s, transform 0.3s;
+      text-align: center;
+    }
+
+    .card:hover {
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
+      transform: translateY(-5px);
+    }
+
+    .card h2 {
+      font-size: 24px;
+      color: #1c3d5a;
+      margin-bottom: 10px;
+    }
+
+    .card p {
+      font-size: 14px;
+      color: #6b7c93;
+      margin-top: 10px;
+      display: none; /* Hide paragraphs initially */
+    }
+
+    /* Footer */
+    .footer {
+      background-color: #ffffff;
+      text-align: center;
+      padding: 15px;
+      font-size: 14px;
+      border-top: 1px solid #e0e6ed;
+    }
+
+    /* Hover behavior for revealing text */
+    .nav-menu a:hover ~ .main-content .dashboard .card p {
+      display: none;
+    }
+
+    .nav-menu a[data-target="card1"]:hover ~ .main-content .dashboard #card1 p,
+    .nav-menu a[data-target="card2"]:hover ~ .main-content .dashboard #card2 p,
+    .nav-menu a[data-target="card3"]:hover ~ .main-content .dashboard #card3 p,
+    .nav-menu a[data-target="card4"]:hover ~ .main-content .dashboard #card4 p {
+      display: block;
+      animation: fadeIn 0.3s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+  </style>
+</head>
 
 <body>
-  <!-- Info bar for date and location -->
-  <div class="info-bar">
-    <span id="current-date">Loading date...</span>
-    <span id="location">Location: Richmond, VA</span>
-  </div>
-
-  <!-- Navigation Menu -->
-  <nav>
-    <ul class="menuItems">
-      <li><a href="view_reports.html">View Adherence Reports</a></li>
-      <li><a href="search_medication.html">Search Medications</a></li>
-      <li><a href="search_member.html">Search Patients</a></li>
-      <li><a href="../Sprint%202/manage_providers.html">Manage Account</a></li>
-      <li><a href="index.html">Log Out</a></li>
+  <!-- Sidebar Navigation -->
+  <aside class="sidebar">
+    <div class="logo">TrackYourHealth</div>
+    <ul class="nav-menu">
+      <li><a href="view_reports.html" data-target="card1">📈 View Reports</a></li>
+      <li><a href="search_medication.html" data-target="card2">💊 Search Medications</a></li>
+      <li><a href="search_member.html" data-target="card3">👥 Search Patients</a></li>
+      <li><a href="../Sprint%202/manage_providers.html" data-target="card4">⚙️ Manage Account</a></li>
+      <li><a href="index.html" class="logout">🚪 Log Out</a></li>
     </ul>
-  </nav>
-  <br>
-  <!-- Content Section -->
-  <section class="content">
-    <h1>Welcome, Provider!</h1>
+  </aside>
 
-    <h2>👥 Current Patients</h2>
-    <div id="patientsContainer">
-      <p>View your patients and patient data.</p>
-    </div>
-  </section>
+  <!-- Main Content -->
+  <main class="main-content">
+    <header class="header">
+      <div class="date-badge">
+        <span id="date-part"></span>
+        <span id="time-part"></span>
+      </div>
+      <span id="location">Location: Richmond, VA</span>
+    </header>
 
-  <!-- Footer -->
-  <footer>
-    &copy; 2025 TrackYourHealth
-  </footer>
+    <section class="welcome">
+      <h1>Welcome, Provider!</h1>
+    </section>
 
+    <section class="dashboard">
+      <div class="card" id="card1">
+        <h2>📈 View Reports</h2>
+        <p>Monitor patients' adherence reports and generate insights.</p>
+      </div>
+
+      <div class="card" id="card2">
+        <h2>💊 Search Medications</h2>
+        <p>Browse and research medication options for patients.</p>
+      </div>
+
+      <div class="card" id="card3">
+        <h2>👥 Search Patients</h2>
+        <p>Access and manage patient records securely.</p>
+      </div>
+
+      <div class="card" id="card4">
+        <h2>⚙️ Manage Account</h2>
+        <p>Update your provider profile and settings.</p>
+      </div>
+    </section>
+
+    <footer class="footer">
+      &copy; 2025 TrackYourHealth
+    </footer>
+  </main>
+
+  <!-- JavaScript for Live Clock -->
   <script>
-    
-    const dateEl = document.getElementById("current-date");
-    const today = new Date();
-    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-    dateEl.textContent = "Today is: " + today.toLocaleDateString(undefined, options);
-    
- 
+    function updateDateTime() {
+      const datePart = document.getElementById("date-part");
+      const timePart = document.getElementById("time-part");
+      const now = new Date();
+
+      const dateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+      const timeOptions = { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true };
+
+      // Set the date once
+      if (!datePart.textContent) {
+        datePart.textContent = "Today is: " + now.toLocaleDateString(undefined, dateOptions);
+      }
+
+      // Update the time part every second
+      timePart.textContent = " | " + now.toLocaleTimeString(undefined, timeOptions);
+    }
+
+    window.onload = function() {
+      updateDateTime(); 
+      setInterval(updateDateTime, 1000); 
+    };
   </script>
 </body>
-
 </html>
