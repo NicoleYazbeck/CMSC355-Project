@@ -2,44 +2,40 @@
  * @jest-environment jsdom
  */
 
-const { addProvider } = require("../Sprint 2/manage_provider.js");
+const { displayProviderResults } = require("./manage_providers.js");
 
-describe("addProvider", () => {
-  beforeEach(() => {
-    // Set up mock DOM
-    document.body.innerHTML = `
-      <input type="text" id="providerName" value="Dr. Strange" />
-      <input type="email" id="contact" value="strange@example.com" />
-      <ul id="providerList"></ul>
-    `;
+describe("displayProviderResults (manageProviders)", () => {
+    beforeEach(() => {
+        document.body.innerHTML = `<div id="results"></div>`;
+    });
 
-    // Mock alert
-    global.alert = jest.fn();
-  });
+    test("should show matched provider details", () => {
+        const mockProviders = [
+            { name: "Dr. John Smith", email: "john.smith@example.com" }
+        ];
 
-  test("adds a provider to the list if inputs are valid", () => {
-    addProvider();
+        displayProviderResults("john", mockProviders);
+        const results = document.getElementById("results").innerHTML;
 
-    const listItems = document.querySelectorAll("#providerList li");
-    expect(listItems.length).toBe(1);
-    expect(listItems[0].innerHTML).toContain("Dr. Strange");
-    expect(listItems[0].innerHTML).toContain("strange@example.com");
-  });
+        expect(results).toContain("Dr. John Smith");
+        expect(results).toContain("john.smith@example.com");
+    });
 
-  test("clears input fields after adding", () => {
-    addProvider();
+    test("should be case-insensitive", () => {
+        const mockProviders = [
+            { name: "Dr. Jane Doe", email: "jane.doe@example.com" }
+        ];
 
-    expect(document.getElementById("providerName").value).toBe("");
-    expect(document.getElementById("contact").value).toBe("");
-  });
+        displayProviderResults("JANE".toLowerCase(), mockProviders);
+        expect(document.getElementById("results").innerHTML).toContain("Dr. Jane Doe");
+    });
 
-  test("shows alert if inputs are missing", () => {
-    document.getElementById("providerName").value = "";
-    document.getElementById("contact").value = "";
+    test("should display 'No providers found.' when no match", () => {
+        const mockProviders = [
+            { name: "Dr. Alice Blue", email: "alice.blue@example.com" }
+        ];
 
-    addProvider();
-
-    expect(global.alert).toHaveBeenCalledWith("Please fill out all fields.");
-    expect(document.querySelectorAll("#providerList li").length).toBe(0);
-  });
+        displayProviderResults("nonexistent", mockProviders);
+        expect(document.getElementById("results").innerHTML).toContain("No providers found.");
+    });
 });
