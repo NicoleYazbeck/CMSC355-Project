@@ -11,6 +11,21 @@
 
 The Medical Adherence System is a healthcare application designed to help patients follow prescribed medication schedules and allow healthcare providers to monitor adherence through submitted reports. This system ensures that patients take their medications correctly and on time while giving providers insights into adherence trends.
 
+## Tools Used
+
+* HTML/CSS
+  > For frontend user interface
+* Node.JS
+  > For implementing functionalities.
+* Firebase
+  > For hosting our application.
+* Firestore
+  > For storing user data.
+* Jest
+  > For automatic test cases.
+* Quarto
+  > For research corner assignments.
+
 ## Directory Structure
 
 `public/Sprint 1` <br>

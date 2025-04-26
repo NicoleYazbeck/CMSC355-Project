@@ -6,8 +6,17 @@ npm install
 
 # Required packages (add specific versions if necessary)
 jest                       # Testing framework
-express                    # Web framework (if applicable)
 dotenv                     # Environment variable support
+
+# Firebase (for Firestore database)
+npm install firebase
+
+# Jest (for running tests)
+npm install --save-dev jest
+
+# Testing Library (to simulate user actions and DOM events)
+npm install --save-dev @testing-library/dom @testing-library/user-event
 
 # Additional Tools
 git                        # Version control system
+
