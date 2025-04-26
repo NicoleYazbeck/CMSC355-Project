@@ -4,7 +4,7 @@
     <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="menu.css">
+    <link rel="stylesheet" href="menu-1.css">
     <title>Main Menu</title>
     </head>
 
@@ -19,28 +19,37 @@
 <section>
   <nav>
     <ul class="menuItems">
-      <li><a href='submit_adherence.html' data-item='Medical Adherance Submissions'>Medical Adherance Submissions</a></li>
-      <li><a href='search_medication.html' data-item='Search Medications'>Search Medications</a></li>
-      <li><a href='../Sprint%202/manage_reminders.html' data-item='Manage Reminders'>Manage Reminders</a></li>
-      <li><a href='../Sprint%202/patientmanager.html' data-item='Manage Account'>Manage Account</a></li>
-      <li><a href='index.html' data-item='Log Out'>Log Out</a></li>
-    </ul>
+      <li><a href="submit_adherence.html"><span class="menu-icon">📝</span> Submit Medication</a></li>
+      <li><a href="search_medication.html"><span class="menu-icon">💊</span> Search Medications</a></li>
+      <li><a href="../Sprint%202/manage_reminders.html"><span class="menu-icon">⏰</span> Manage Reminders</a></li>
+      <li><a href="../Sprint%202/patientmanager.html"><span class="menu-icon">👤</span> Manage Account</a></li>
+      <li><a href="index.html"><span class="menu-icon">🚪</span> Log Out</a></li>
+    </ul>    
   </nav>
 </section>
 
 <section class="content">
   <h1>Welcome, Patient!</h1>
 
-  <h2>Your Current Medications</h2>
-  <p>Check your active prescriptions and treatment plan.</p>
-  <br />
+  <div class="dashboard">
+    <a href="search_medication.html" class="card">
+      <div class="card-icon">💊</div>
+      <h2>Your Current Medications</h2>
+      <p>Check your active prescriptions and treatment plan.</p>
+    </a>
 
-  <h2>Adherence Report</h2>
-  <p>View your medication adherence submissions and progress.</p>
-  <br />
+    <a href="submit_adherence.html" class="card">
+      <div class="card-icon">📈</div>
+      <h2>Adherence Report</h2>
+      <p>View your medication adherence submissions and progress.</p>
+    </a>
 
-  <h2>Browse Providers</h2>
-  <p>Find healthcare providers near you or get connected to specialists.</p>
+    <a href="search_providers.html" class="card">
+      <div class="card-icon">👩‍⚕️</div>
+      <h2>Browse Providers</h2>
+      <p>Find healthcare providers near you or get connected to specialists.</p>
+    </a>
+  </div>
 </section>
 
 <footer>
