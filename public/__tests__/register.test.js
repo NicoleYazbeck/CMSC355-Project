@@ -2,8 +2,18 @@
  * @jest-environment jsdom
  */
 
-const { registerPatient, calculateDOB, db } = require('../Sprint 2/register.js');
+import { registerPatient, calculateDOB, db } from "../Sprint 2/register.js";
 
+// Mock db.collection manually
+jest.mock("../Sprint 2/register.js", () => {
+  const originalModule = jest.requireActual("../Sprint 2/register.js");
+  return {
+    ...originalModule,
+    db: {
+      collection: jest.fn()
+    }
+  };
+});
 
 describe('registerPatient', () => {
   let mockEvent;
@@ -52,24 +62,23 @@ describe('registerPatient', () => {
     const getMock = jest.fn().mockResolvedValue({ empty: true });
     const addMock = jest.fn().mockResolvedValue({});
 
-    db.collection.mockImplementation((name) => {
-      return {
-        where: () => ({ get: getMock }),
-        add: addMock
-      };
-    });
+    db.collection.mockImplementation((name) => ({
+      where: () => ({ get: getMock }),
+      add: addMock
+    }));
 
     await registerPatient(mockEvent, mockDocument);
 
-    expect(addMock).toHaveBeenCalledTimes(2); // users and auth collections
+    expect(addMock).toHaveBeenCalledTimes(2); // One for users, one for auth
     expect(alertMock).toHaveBeenCalledWith("Registration successful!");
     expect(window.location.href).toBe("login.html");
   });
 
   test('displays error message on failure', async () => {
-    db.collection.mockImplementation(() => ({
+    const failingAdd = jest.fn().mockRejectedValue(new Error("Firestore failure"));
+    db.collection.mockImplementation((name) => ({
       where: () => ({ get: jest.fn().mockResolvedValue({ empty: true }) }),
-      add: jest.fn().mockRejectedValue(new Error("Firestore failure"))
+      add: failingAdd
     }));
 
     await registerPatient(mockEvent, mockDocument);
@@ -85,3 +94,4 @@ describe("calculateDOB", () => {
     expect(dob).toMatch(new RegExp(`^${expectedYear}-\\d{2}-\\d{2}$`));
   });
 });
+
