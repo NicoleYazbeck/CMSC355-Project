@@ -1,17 +1,21 @@
-export function addProvider(document) {
-    const name = document.getElementById("providerName").value;
-    const contact = document.getElementById("contact").value;
-  
-    if (!name || !contact) {
-      alert("Please fill out all fields.");
-      return;
+function displayProviderResults(searchName, providers) {
+    const resultsDiv = document.getElementById("results");
+    resultsDiv.innerHTML = "";
+
+    const matched = providers.filter(p =>
+        p.name.toLowerCase().includes(searchName)
+    );
+
+    if (matched.length === 0) {
+        resultsDiv.innerHTML = "<p>No providers found.</p>";
+    } else {
+        matched.forEach(p => {
+            const entry = document.createElement("div");
+            entry.innerHTML = `<strong>${p.name}</strong><br>Email: ${p.email}`;
+            resultsDiv.appendChild(entry);
+            resultsDiv.appendChild(document.createElement("hr"));
+        });
     }
-  
-    const li = document.createElement("li");
-    li.innerHTML = `<strong>${name}</strong><br>Contact: ${contact} <br><button onclick="this.parentElement.remove()">Remove</button>`;
-    document.getElementById("providerList").appendChild(li);
-  
-    document.getElementById("providerName").value = "";
-    document.getElementById("contact").value = "";
-  }
-  
+}
+
+module.exports = { displayProviderResults };
